@@ -28,7 +28,7 @@ public class Gestion_gp1 {
     //CONECCION
     public static void comprobarConeccion () {
         try {
-            Class.forName("org.mariadb.jdbc.Drver");
+            Class.forName("org.mariadb.jdbc.Driver");
             Connection conexion = DriverManager.getConnection("jdbc:mariadb://localhost/gestion_gp1","root","");
             
         } catch (ClassNotFoundException ex) {
