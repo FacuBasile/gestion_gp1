@@ -21,10 +21,16 @@ public class Gestion_gp1 {
      */
     public static void main(String[] args) {
         
-        comprobarConeccion();
+        //comprobarConeccion();
+        
+        // ******************* PRUEBAS EQUIPO DATA ******************* (JUAN)
+        
+        
+        // ******************* PRUEBAS MIEMBRO DATA ******************* (JUAN)
+        
+        
+        
     }
-    
-    
     //CONECCION
     public static void comprobarConeccion () {
         try {
@@ -38,5 +44,10 @@ public class Gestion_gp1 {
         }
         //Si no salta ningun cartel "ANDA", sino "ALGO FALLA"
     }
+    //CRUD (Create, Read, Update, Delete)
+    // ******************* PRUEBAS EQUIPO DATA ******************* (JUAN)
+        
+        
+    // ******************* PRUEBAS MIEMBRO DATA ******************* (JUAN)
     
 }

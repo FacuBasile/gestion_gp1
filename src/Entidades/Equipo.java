@@ -18,11 +18,10 @@ public class Equipo {
     private LocalDate fechaCreacion;
     private boolean estado;
     
-    public Equipo(){
-        
+    public Equipo() {
     }
     
-    public Equipo(int idEquipo, int idProyecto, String nombre, LocalDate fechaCreacion, boolean estado){
+    public Equipo (int idEquipo, int idProyecto, String nombre, LocalDate fechaCreacion, boolean estado){
         this.idEquipo = idEquipo;
         this.idProyecto = idProyecto;
         this.nombre = nombre;
@@ -30,7 +29,7 @@ public class Equipo {
         this.estado = estado;
     }
 
-    public Equipo(String nombre, LocalDate fechaCreacion, boolean estado) {
+    public Equipo (String nombre, LocalDate fechaCreacion, boolean estado) {
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
@@ -75,6 +74,12 @@ public class Equipo {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Equipo{" + "idEquipo=" + idEquipo + ", idProyecto=" + idProyecto + ", nombre=" + nombre + ", fechaCreacion=" + fechaCreacion + ", estado=" + estado + '}';
+    }
+    
     
     
 }

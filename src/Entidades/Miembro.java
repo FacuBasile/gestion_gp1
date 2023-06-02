@@ -16,17 +16,17 @@ public class Miembro {
     private String nombre;
     private boolean estado;
 
-    public Miembro() {
+    public Miembro () {
     }
 
-    public Miembro(int dni, String apellido, String nombre, boolean estado) {
+    public Miembro (int dni, String apellido, String nombre, boolean estado) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
         this.estado = estado;
     }
 
-    public Miembro(int idMiembro, int dni, String apellido, String nombre, boolean estado) {
+    public Miembro (int idMiembro, int dni, String apellido, String nombre, boolean estado) {
         this.idMiembro = idMiembro;
         this.dni = dni;
         this.apellido = apellido;
@@ -72,6 +72,11 @@ public class Miembro {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Miembro{" + "idMiembro=" + idMiembro + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", estado=" + estado + '}';
     }
     
     

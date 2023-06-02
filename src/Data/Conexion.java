@@ -26,18 +26,15 @@ public class Conexion {
     
     
     private Conexion(){
-         try {
+    
+        try {
             //Cargar drivers
             Class.forName("org.mariadb.jdbc.Driver");
-            
-            
-            
-            
+
         } catch ( ClassNotFoundException ex ) {
             JOptionPane.showMessageDialog(null, "Clase Conexion: Error al cargar Driver" + ex);
         }
     }
-    
     
    public static java.sql.Connection getConexion() {
         java.sql.Connection con = null;
