@@ -5,7 +5,9 @@
  */
 package gestion_gp1;
 
+import Data.MiembroData;
 import Data.proyectoData;
+import Entidades.Miembro;
 import Entidades.Proyecto;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,8 +33,17 @@ public class Gestion_gp1 {
         
         // ******************* PRUEBAS MIEMBRO DATA ******************* (JUAN)
         
+        //pruebaMiembroDataGuardar(); //Funciona
+        //pruebaMiembroDataBuscarID(); //Funciona
+        //pruebaMiembroDataBuscarDNI(); //Funciona
+        //pruebaMiembroDataBuscarLista(); //Funciona
+        pruebaMiembroDataActualizar(); //Funciona
+        //pruebaMiembroDataAlta_BajaEstado(); //Funciona
+        
+        
+        
         // PRUEBAS PROYECTO DATA (FACU)
-        pruebasProyectoData();
+        //pruebasProyectoData();
         
         
         
@@ -55,7 +66,39 @@ public class Gestion_gp1 {
         
         
     // ******************* PRUEBAS MIEMBRO DATA ******************* (JUAN)
+    public static void pruebaMiembroDataGuardar () {
+        Miembro miembro = new Miembro(65742358,"Gomez","Karim",false);
+        MiembroData miembroData = new MiembroData();
+        miembroData.guardarMiembro(miembro);
+    }
     
+    public static void pruebaMiembroDataBuscarID () {
+        MiembroData miembroData = new MiembroData();
+        System.out.println(miembroData.buscarMiembroID(2));
+    }
+    
+    public static void pruebaMiembroDataBuscarDNI () {
+        MiembroData miembroData = new MiembroData();
+        System.out.println(miembroData.buscarMiembroDNI(56871356));
+    }
+    
+    public static void pruebaMiembroDataBuscarLista() {
+        MiembroData miembroData = new MiembroData();
+        System.out.println(miembroData.listaMiembros());
+    }
+    
+    public static void pruebaMiembroDataActualizar() {
+        Miembro miembro = new Miembro(2,65742358,"Vallejos","Jose",false);
+        MiembroData miembroData = new MiembroData();
+        miembroData.actualizarMiembro(miembro);
+    }
+    
+    public static void pruebaMiembroDataAlta_BajaEstado() {
+        MiembroData miembroData = new MiembroData();
+        miembroData.alta_BajaMiembro(3, true);
+    }
+    
+    // ******************* PRUEBAS PROYECTO DATA ******************* (FACU)
     
     public static void pruebasProyectoData(){
         System.out.println("se crea proyecto");
