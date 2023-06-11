@@ -44,7 +44,7 @@ public class TareaData {
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "TAREA ACTUALIZADA");
+                JOptionPane.showMessageDialog(null, "TAREA GUARDADA");
             }
             ps.close();
             
@@ -56,7 +56,7 @@ public class TareaData {
     }
     
     public void actualizarFechaCierre(Tarea t, LocalDate f){
-       String query = "UPDATE tarea SET fechaCierre = ?, estado=0 WHERE idTarea = ?"; 
+       String query = "UPDATE tarea SET fechaCierre = ? WHERE idTarea = ?"; 
        
         try { 
             
@@ -80,6 +80,30 @@ public class TareaData {
            
            
        
+    }
+    
+    public void actualizarEstadoTarea(Tarea t, int bool){
+        
+       String query = "UPDATE tarea SET estado = ? WHERE idTarea = ?"; 
+       
+        try { 
+            
+            PreparedStatement ps = con.prepareStatement(query);
+           
+            
+            ps.setInt(1, bool);
+            ps.setInt(2, t.getIdTarea());
+            
+            int res = ps.executeUpdate();
+            
+            if(res>0){
+                JOptionPane.showMessageDialog(null, "ESTADO Tarea actualizado");
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TareaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public ArrayList<Tarea> TareasDeMiembroEq(int idMiembroEq){

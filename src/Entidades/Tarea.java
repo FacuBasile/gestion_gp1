@@ -19,7 +19,8 @@ public class Tarea {
     private boolean estado;
     private int idMiembroEq;
     
-     public Tarea() {
+    public Tarea() {
+         this.fechaCreacion = LocalDate.now();
     }
 
     public Tarea(String nombre, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
@@ -33,7 +34,7 @@ public class Tarea {
     public Tarea(int idTarea, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
         this.idTarea = idTarea;
         this.nombre = nombre;
-        this.fechaCreacion = fechaCreacion;
+        this.fechaCreacion = LocalDate.now();
         this.fechaCierre = fechaCierre;
         this.estado = estado;
         this.idMiembroEq = idMiembroEq;
@@ -81,6 +82,10 @@ public class Tarea {
 
     public void setIdMiembroEq(int idMiembroEq) {
         this.idMiembroEq = idMiembroEq;
+    }
+
+    public void setFechaCreacion(LocalDate toLocalDate) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    

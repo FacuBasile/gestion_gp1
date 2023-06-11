@@ -47,6 +47,8 @@ public class Gestion_gp1 {
         //buscarProyecto();      // Funcionan ambos metodos de buscar por ID y por Nombre
         //listarProyectos();     // Funciona 
         
+        //++++++++++++++++++++ PRUEBAS TAREA DATA +++++++++++++++++++++++ (FACU)
+        
     }
     //CONECCION
     public static void comprobarConeccion () {
