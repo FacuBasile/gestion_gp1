@@ -60,11 +60,19 @@ public class Gestion_gp1 {
     public static void pruebasProyectoData(){
         System.out.println("se crea proyecto");
         Proyecto p = new Proyecto();
-        p.setNombre("APLICACION gestion_gp1");
+        p.setNombre("APLICACION_gp1");
         p.setDescripcion("APRENDIENDO SQL Y JAVA");
         p.setFechaInicio(LocalDate.now());
         p.setEstado(true);
+        
         proyectoData pd = new proyectoData();
         pd.guardarProyecto(p);
+        
+        
+        System.out.println("BUSCAR PROYECTO POR ID");
+        System.out.println("NOMBRE: "+pd.buscarProyectoID(p.getIdProyecto()).getNombre());
+        System.out.println("BUSCAR PROYECTO POR NOMBRE");
+        String nombre=p.getNombre();
+        System.out.println("NOMBRE: "+pd.buscarProyectoNombre(nombre).getNombre());
     }
 }

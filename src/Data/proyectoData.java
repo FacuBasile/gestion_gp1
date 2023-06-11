@@ -37,7 +37,7 @@ public class proyectoData {
             ps.setString(2, p.getDescripcion());
             ps.setDate(3, Date.valueOf(p.getFechaInicio()));
             ps.setBoolean(4, p.isEstado());
-            ps.executeUpdate();
+           
             
             ps.executeUpdate();
             
@@ -45,7 +45,7 @@ public class proyectoData {
             
             if(resultado.next()){
                 JOptionPane.showMessageDialog(null, "Proyecto Agregado Correctamente");
-                
+                p.setIdProyecto(resultado.getInt("idProyecto"));
             }
             
             ps.close();

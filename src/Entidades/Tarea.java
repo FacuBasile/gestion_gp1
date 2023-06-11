@@ -18,6 +18,26 @@ public class Tarea {
     private LocalDate fechaCierre;
     private boolean estado;
     private int idMiembroEq;
+    
+     public Tarea() {
+    }
+
+    public Tarea(String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaCierre = fechaCierre;
+        this.estado = estado;
+        this.idMiembroEq = idMiembroEq;
+    }
+
+    public Tarea(int idTarea, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
+        this.idTarea = idTarea;
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaCierre = fechaCierre;
+        this.estado = estado;
+        this.idMiembroEq = idMiembroEq;
+    }
 
     public int getIdTarea() {
         return idTarea;
@@ -67,25 +87,7 @@ public class Tarea {
         this.idMiembroEq = idMiembroEq;
     }
 
-    public Tarea() {
-    }
-
-    public Tarea(String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
-        this.nombre = nombre;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaCierre = fechaCierre;
-        this.estado = estado;
-        this.idMiembroEq = idMiembroEq;
-    }
-
-    public Tarea(int idTarea, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
-        this.idTarea = idTarea;
-        this.nombre = nombre;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaCierre = fechaCierre;
-        this.estado = estado;
-        this.idMiembroEq = idMiembroEq;
-    }
+   
     
     
 }
