@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -52,6 +53,30 @@ public class TareaData {
         
     }
     
-    
+    public void actualizarFechaCierre(Tarea t, LocalDate f){
+       String query = "UPDATE tarea SET fechaCierre = ? WHERE idTarea = ?"; 
+       
+        try { 
+            
+            PreparedStatement ps = con.prepareStatement(query);
+           
+            
+            ps.setDate(1, Date.valueOf(f));
+            ps.setInt(2, t.getIdTarea());
+            
+            int res = ps.executeUpdate();
+            
+            if(res>0){
+                JOptionPane.showMessageDialog(null, "Fecha Cierre actualizada");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TareaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+           
+           
+       
+    }
     
 }
