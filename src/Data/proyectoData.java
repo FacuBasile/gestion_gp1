@@ -71,6 +71,7 @@ public class proyectoData {
                 p.setDescripcion(rs.getString("descripcion"));
                 p.setIdProyecto(rs.getInt("idProyecto"));
                 p.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                p.setEstado(rs.getBoolean("estado"));
                 
                 proyectos.add(p);
                 
