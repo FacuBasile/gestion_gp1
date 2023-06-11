@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,6 +53,40 @@ public class proyectoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al agregar el nuevo Proyecto"+ex);
         } 
+    }
+    
+    public ArrayList<Proyecto> proyectos(){
+        ArrayList proyectos = new ArrayList();
+        
+        String query = "SELECT * FROM proyecto";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Proyecto p = new Proyecto();
+                p.setNombre(rs.getString("nombre"));
+                p.setDescripcion(rs.getString("descripcion"));
+                p.setIdProyecto(rs.getInt("idProyecto"));
+                p.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                
+                proyectos.add(p);
+                
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(proyectoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
+        
+        
+        
+        
+        return proyectos;
     }
     
     public Proyecto buscarProyectoID(int id){

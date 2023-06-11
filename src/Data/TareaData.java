@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -80,4 +82,114 @@ public class TareaData {
        
     }
     
+    public ArrayList<Tarea> TareasDeMiembroEq(int idMiembroEq){
+        ArrayList<Tarea> tareas = new ArrayList();
+        
+        String query ="SELECT * from tarea WHERE idMiembroEq = ?";
+        
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idMiembroEq);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Tarea t = new Tarea();
+                t.setNombre(rs.getString("nombre"));
+                t.setIdTarea(rs.getInt("idTarea"));
+                t.setIdMiembroEq(rs.getInt("idMiembreoEq"));
+                t.setEstado(rs.getBoolean("estado"));
+                t.setFechaCierre(rs.getDate("fechaCierre").toLocalDate());
+                t.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+                
+                tareas.add(t);
+               
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TareaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+        return tareas;
+    }
+    
+    public ArrayList<Tarea> TareasCerradasDeMiembroEq(int idMiembroEq){
+        ArrayList<Tarea> tareas = new ArrayList();
+        
+        String query ="SELECT * from tarea WHERE idMiembroEq = ? AND estado = 0";
+        
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idMiembroEq);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Tarea t = new Tarea();
+                t.setNombre(rs.getString("nombre"));
+                t.setIdTarea(rs.getInt("idTarea"));
+                t.setIdMiembroEq(rs.getInt("idMiembreoEq"));
+                t.setEstado(rs.getBoolean("estado"));
+                t.setFechaCierre(rs.getDate("fechaCierre").toLocalDate());
+                t.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+                
+                tareas.add(t);
+               
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TareaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+        return tareas;
+    }
+    
+    public ArrayList<Tarea> TareasNoCerradasDeMiembroEq(int idMiembroEq){
+        ArrayList<Tarea> tareas = new ArrayList();
+        
+        String query ="SELECT * from tarea WHERE idMiembroEq = ? AND estado = 1";
+        
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idMiembroEq);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Tarea t = new Tarea();
+                t.setNombre(rs.getString("nombre"));
+                t.setIdTarea(rs.getInt("idTarea"));
+                t.setIdMiembroEq(rs.getInt("idMiembreoEq"));
+                t.setEstado(rs.getBoolean("estado"));
+                t.setFechaCierre(rs.getDate("fechaCierre").toLocalDate());
+                t.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+                
+                tareas.add(t);
+               
+            }
+            
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TareaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+        return tareas;
+    }
 }
