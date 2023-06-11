@@ -18,6 +18,27 @@ public class Tarea {
     private LocalDate fechaCierre;
     private boolean estado;
     private int idMiembroEq;
+    
+    public Tarea() {
+         this.fechaCreacion = LocalDate.now();
+    }
+
+    public Tarea(String nombre, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
+        this.nombre = nombre;
+        this.fechaCreacion = LocalDate.now();
+        this.fechaCierre = fechaCierre;
+        this.estado = estado;
+        this.idMiembroEq = idMiembroEq;
+    }
+
+    public Tarea(int idTarea, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
+        this.idTarea = idTarea;
+        this.nombre = nombre;
+        this.fechaCreacion = LocalDate.now();
+        this.fechaCierre = fechaCierre;
+        this.estado = estado;
+        this.idMiembroEq = idMiembroEq;
+    }
 
     public int getIdTarea() {
         return idTarea;
@@ -37,10 +58,6 @@ public class Tarea {
 
     public LocalDate getFechaCreacion() {
         return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 
     public LocalDate getFechaCierre() {
@@ -67,25 +84,11 @@ public class Tarea {
         this.idMiembroEq = idMiembroEq;
     }
 
-    public Tarea() {
+    public void setFechaCreacion(LocalDate toLocalDate) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Tarea(String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
-        this.nombre = nombre;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaCierre = fechaCierre;
-        this.estado = estado;
-        this.idMiembroEq = idMiembroEq;
-    }
-
-    public Tarea(int idTarea, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
-        this.idTarea = idTarea;
-        this.nombre = nombre;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaCierre = fechaCierre;
-        this.estado = estado;
-        this.idMiembroEq = idMiembroEq;
-    }
+   
     
     
 }

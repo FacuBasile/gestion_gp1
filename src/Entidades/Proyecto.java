@@ -77,5 +77,12 @@ public class Proyecto {
     public void setEstado(boolean estado) {
         this.estado = estado;
     } 
+
+    @Override
+    public String toString() {
+        return "Proyecto{" + "idProyecto=" + idProyecto + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fechaInicio=" + fechaInicio + ", estado=" + estado + '}';
+    }
+    
+    
     
 }
