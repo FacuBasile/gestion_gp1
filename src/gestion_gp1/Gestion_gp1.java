@@ -6,9 +6,11 @@
 package gestion_gp1;
 
 import Data.MiembroData;
+import Data.TareaData;
 import Data.proyectoData;
 import Entidades.Miembro;
 import Entidades.Proyecto;
+import Entidades.Tarea;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -33,7 +35,7 @@ public class Gestion_gp1 {
         
         // ******************* PRUEBAS MIEMBRO DATA ******************* (JUAN)
         
-        //pruebaMiembroDataGuardar(); //Funciona
+//        pruebaMiembroDataGuardar(); //Funciona
         //pruebaMiembroDataBuscarID(); //Funciona
         //pruebaMiembroDataBuscarDNI(); //Funciona
         //pruebaMiembroDataBuscarLista(); //Funciona
@@ -48,6 +50,8 @@ public class Gestion_gp1 {
         //listarProyectos();     // Funciona 
         
         //++++++++++++++++++++ PRUEBAS TAREA DATA +++++++++++++++++++++++ (FACU)
+//        crearTarea();
+        
         
     }
     //CONECCION
@@ -133,5 +137,15 @@ public class Gestion_gp1 {
        
         System.out.println(pd.proyectos().toString());
         
+    }
+    
+    public static void crearTarea(){
+        Tarea t = new Tarea();
+        TareaData td = new TareaData();
+        
+        t.setNombre("CREAR TAREA DESDE MAIN DE NETBEANS PARA PROBAR");
+        t.setFechaCierre(LocalDate.MIN);
+        t.setEstado(true);
+        td.nuevaTarea(t, 0);
     }
 }
