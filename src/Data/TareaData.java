@@ -44,7 +44,7 @@ public class TareaData {
             if(rs.next()){
                 JOptionPane.showMessageDialog(null, "TAREA ACTUALIZADA");
             }
-            
+            ps.close();
             
         } catch (SQLException ex) {
             Logger.getLogger(TareaData.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,7 +54,7 @@ public class TareaData {
     }
     
     public void actualizarFechaCierre(Tarea t, LocalDate f){
-       String query = "UPDATE tarea SET fechaCierre = ? WHERE idTarea = ?"; 
+       String query = "UPDATE tarea SET fechaCierre = ?, estado=0 WHERE idTarea = ?"; 
        
         try { 
             
@@ -70,6 +70,7 @@ public class TareaData {
                 JOptionPane.showMessageDialog(null, "Fecha Cierre actualizada");
             }
             
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(TareaData.class.getName()).log(Level.SEVERE, null, ex);
         }

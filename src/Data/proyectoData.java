@@ -76,7 +76,7 @@ public class proyectoData {
             }
             
             
-            
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(proyectoData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -106,7 +106,7 @@ public class proyectoData {
             }
             
             
-            
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(proyectoData.class.getName()).log(Level.SEVERE, null, ex);
         }
