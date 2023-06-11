@@ -5,9 +5,12 @@
  */
 package gestion_gp1;
 
+import Data.proyectoData;
+import Entidades.Proyecto;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +30,9 @@ public class Gestion_gp1 {
         
         
         // ******************* PRUEBAS MIEMBRO DATA ******************* (JUAN)
+        
+        // PRUEBAS PROYECTO DATA (FACU)
+        pruebasProyectoData();
         
         
         
@@ -50,4 +56,15 @@ public class Gestion_gp1 {
         
     // ******************* PRUEBAS MIEMBRO DATA ******************* (JUAN)
     
+    
+    public static void pruebasProyectoData(){
+        System.out.println("se crea proyecto");
+        Proyecto p = new Proyecto();
+        p.setNombre("APLICACION gestion_gp1");
+        p.setDescripcion("APRENDIENDO SQL Y JAVA");
+        p.setFechaInicio(LocalDate.now());
+        p.setEstado(true);
+        proyectoData pd = new proyectoData();
+        pd.guardarProyecto(p);
+    }
 }
