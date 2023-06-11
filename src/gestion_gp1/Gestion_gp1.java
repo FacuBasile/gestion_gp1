@@ -37,15 +37,15 @@ public class Gestion_gp1 {
         //pruebaMiembroDataBuscarID(); //Funciona
         //pruebaMiembroDataBuscarDNI(); //Funciona
         //pruebaMiembroDataBuscarLista(); //Funciona
-        pruebaMiembroDataActualizar(); //Funciona
+        //pruebaMiembroDataActualizar(); //Funciona
         //pruebaMiembroDataAlta_BajaEstado(); //Funciona
         
         
         
-        // PRUEBAS PROYECTO DATA (FACU)
-        //pruebasProyectoData();
-        
-        
+        // ******************* PRUEBAS PROYECTO DATA ******************* (FACU)
+//        guardarProyecto();     // Funciona
+        //buscarProyecto();      // Funcionan ambos metodos de buscar por ID y por Nombre
+        //listarProyectos();     // Funciona 
         
     }
     //CONECCION
@@ -100,22 +100,36 @@ public class Gestion_gp1 {
     
     // ******************* PRUEBAS PROYECTO DATA ******************* (FACU)
     
-    public static void pruebasProyectoData(){
+    public static void guardarProyecto(){
         System.out.println("se crea proyecto");
         Proyecto p = new Proyecto();
-        p.setNombre("APLICACION_gp1");
-        p.setDescripcion("APRENDIENDO SQL Y JAVA");
+        p.setNombre("3ER PROYECTO PRUEBA");
+        p.setDescripcion("OTRO MAS PARA LA LISTA DE PROYECTOS");
         p.setFechaInicio(LocalDate.now());
         p.setEstado(true);
         
         proyectoData pd = new proyectoData();
         pd.guardarProyecto(p);
         
+    }
+    
+    public static void buscarProyecto(){
+        proyectoData pd = new proyectoData();
+        Proyecto p = new Proyecto();
         
-        System.out.println("BUSCAR PROYECTO POR ID");
-        System.out.println("NOMBRE: "+pd.buscarProyectoID(p.getIdProyecto()).getNombre());
+        
+        System.out.println("BUSCAR PROYECTO POR ID 1 ");
+        System.out.println("NOMBRE: "+pd.buscarProyectoID(1));
         System.out.println("BUSCAR PROYECTO POR NOMBRE");
-        String nombre=p.getNombre();
+        String nombre="APLICACION_gp1";
         System.out.println("NOMBRE: "+pd.buscarProyectoNombre(nombre).getNombre());
+    }
+    
+    public static void listarProyectos(){
+       proyectoData pd = new proyectoData();
+       Proyecto p = new Proyecto();
+       
+        System.out.println(pd.proyectos().toString());
+        
     }
 }

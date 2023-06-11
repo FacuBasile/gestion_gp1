@@ -22,9 +22,9 @@ public class Tarea {
      public Tarea() {
     }
 
-    public Tarea(String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
+    public Tarea(String nombre, LocalDate fechaCierre, boolean estado, int idMiembroEq) {
         this.nombre = nombre;
-        this.fechaCreacion = fechaCreacion;
+        this.fechaCreacion = LocalDate.now();
         this.fechaCierre = fechaCierre;
         this.estado = estado;
         this.idMiembroEq = idMiembroEq;
@@ -57,10 +57,6 @@ public class Tarea {
 
     public LocalDate getFechaCreacion() {
         return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 
     public LocalDate getFechaCierre() {
