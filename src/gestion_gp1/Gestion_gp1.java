@@ -5,9 +5,13 @@
  */
 package gestion_gp1;
 
+import Data.ComentarioData;
+import Data.ComposicionData;
 import Data.MiembroData;
 import Data.TareaData;
 import Data.proyectoData;
+import Entidades.Comentario;
+import Entidades.Composicion;
 import Entidades.Miembro;
 import Entidades.Proyecto;
 import Entidades.Tarea;
@@ -52,7 +56,9 @@ public class Gestion_gp1 {
         //++++++++++++++++++++ PRUEBAS TAREA DATA +++++++++++++++++++++++ (FACU)
 //        crearTarea();
         
-        
+        //+++++++++++++++++++  PRUEBA COMENTARIO DATA +++++++++++++++++++++ (CHRISTIAN)
+          //crearComentario();  
+          integrarMiembro();
     }
     //CONECCION
     public static void comprobarConeccion () {
@@ -148,4 +154,20 @@ public class Gestion_gp1 {
         t.setEstado(true);
         td.nuevaTarea(t, 0);
     }
+    
+     // ******************* PRUEBA COMENTARIO DATA ******************* (CHRISTIAN)
+    
+    public static void crearComentario() {
+        ComentarioData cd = new ComentarioData();
+        Comentario c = new Comentario("ACA TENGO MI AVANCE EN LA TAREA", LocalDate.now(), 0);
+        cd.generarComentario(c);
+    }
+    
+    public static void integrarMiembro(){
+        ComposicionData cd = new ComposicionData();
+        //nt dni, String apellido, String nombre, boolean estado
+        Composicion m = new Composicion(LocalDate.parse("2023-06-02"), 0, 2);
+        cd.insertarMiembro(m);
+    }
+    
 }
