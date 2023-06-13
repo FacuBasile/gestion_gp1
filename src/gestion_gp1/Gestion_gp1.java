@@ -5,16 +5,17 @@
  */
 package gestion_gp1;
 
+import Data.EquipoData;
 import Data.MiembroData;
-import Data.TareaData;
 import Data.proyectoData;
+import Entidades.Equipo;
 import Entidades.Miembro;
 import Entidades.Proyecto;
-import Entidades.Tarea;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.Month;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,11 +32,17 @@ public class Gestion_gp1 {
         //comprobarConeccion();
         
         // ******************* PRUEBAS EQUIPO DATA ******************* (JUAN)
-        
+        //pruebacrearEquipo(); //Fuciona
+        pruebaModificarProyecto(); //No Funciona
+        //pruebaDarBajaProyecto(); //Funciona
+        //pruebaBuscarEquipo(); //Funciona
+        //pruebaModificarEquipo(); //Funciona
+        //pruebaListaEquipo(); //Funciona
+        //pruebaModificarEstadoEquipo(); //Funciona
         
         // ******************* PRUEBAS MIEMBRO DATA ******************* (JUAN)
         
-//        pruebaMiembroDataGuardar(); //Funciona
+        //pruebaMiembroDataGuardar(); //Funciona
         //pruebaMiembroDataBuscarID(); //Funciona
         //pruebaMiembroDataBuscarDNI(); //Funciona
         //pruebaMiembroDataBuscarLista(); //Funciona
@@ -44,13 +51,9 @@ public class Gestion_gp1 {
         
         
         
-        // ******************* PRUEBAS PROYECTO DATA ******************* (FACU)
-//        guardarProyecto();     // Funciona
-        //buscarProyecto();      // Funcionan ambos metodos de buscar por ID y por Nombre
-        //listarProyectos();     // Funciona 
+        // PRUEBAS PROYECTO DATA (FACU)
+        //pruebasProyectoData();
         
-        //++++++++++++++++++++ PRUEBAS TAREA DATA +++++++++++++++++++++++ (FACU)
-//        crearTarea();
         
         
     }
@@ -69,7 +72,42 @@ public class Gestion_gp1 {
     }
     //CRUD (Create, Read, Update, Delete)
     // ******************* PRUEBAS EQUIPO DATA ******************* (JUAN)
-        
+    public static void pruebacrearEquipo () {
+        Equipo equipo = new Equipo("Gama",LocalDate.of(2001, 05, 01),true);
+        EquipoData equipoData = new EquipoData();
+        equipoData.crearEquipo(equipo);
+    }
+    
+    public static void pruebaModificarProyecto () {
+        EquipoData equipoData = new EquipoData();
+        equipoData.modificarProyecto(2, 1);
+    }
+    
+    public static void pruebaDarBajaProyecto () {
+        EquipoData equipoData = new EquipoData();
+        equipoData.darBajaProyecto(1);
+    }
+    
+    public static void pruebaBuscarEquipo () {
+        EquipoData equipoData = new EquipoData();
+        System.out.println(equipoData.buscarEquipo(2));
+    }
+    
+    public static void pruebaModificarEquipo () {
+        Equipo equipo = new Equipo(3,9999999,"Gama",LocalDate.of(2000, 05, 01),false);
+        EquipoData equipoData = new EquipoData();
+        equipoData.modificarEquipo(equipo);
+    }
+    
+    public static void pruebaListaEquipo () {
+        EquipoData equipoData = new EquipoData();
+        System.out.println(equipoData.listaEquipo());
+    }
+    
+    public static void pruebaModificarEstadoEquipo () {
+        EquipoData equipoData = new EquipoData();
+        equipoData.modificarEstadoEquipo(1, false);
+    }
         
     // ******************* PRUEBAS MIEMBRO DATA ******************* (JUAN)
     public static void pruebaMiembroDataGuardar () {
@@ -106,46 +144,22 @@ public class Gestion_gp1 {
     
     // ******************* PRUEBAS PROYECTO DATA ******************* (FACU)
     
-    public static void guardarProyecto(){
+    public static void pruebasProyectoData(){
         System.out.println("se crea proyecto");
         Proyecto p = new Proyecto();
-        p.setNombre("3ER PROYECTO PRUEBA");
-        p.setDescripcion("OTRO MAS PARA LA LISTA DE PROYECTOS");
+        p.setNombre("APLICACION_gp1");
+        p.setDescripcion("APRENDIENDO SQL Y JAVA");
         p.setFechaInicio(LocalDate.now());
         p.setEstado(true);
         
         proyectoData pd = new proyectoData();
         pd.guardarProyecto(p);
         
-    }
-    
-    public static void buscarProyecto(){
-        proyectoData pd = new proyectoData();
-        Proyecto p = new Proyecto();
         
-        
-        System.out.println("BUSCAR PROYECTO POR ID 1 ");
-        System.out.println("NOMBRE: "+pd.buscarProyectoID(1));
+        System.out.println("BUSCAR PROYECTO POR ID");
+        System.out.println("NOMBRE: "+pd.buscarProyectoID(p.getIdProyecto()).getNombre());
         System.out.println("BUSCAR PROYECTO POR NOMBRE");
-        String nombre="APLICACION_gp1";
+        String nombre=p.getNombre();
         System.out.println("NOMBRE: "+pd.buscarProyectoNombre(nombre).getNombre());
-    }
-    
-    public static void listarProyectos(){
-       proyectoData pd = new proyectoData();
-       Proyecto p = new Proyecto();
-       
-        System.out.println(pd.proyectos().toString());
-        
-    }
-    
-    public static void crearTarea(){
-        Tarea t = new Tarea();
-        TareaData td = new TareaData();
-        
-        t.setNombre("CREAR TAREA DESDE MAIN DE NETBEANS PARA PROBAR");
-        t.setFechaCierre(LocalDate.MIN);
-        t.setEstado(true);
-        td.nuevaTarea(t, 0);
     }
 }
