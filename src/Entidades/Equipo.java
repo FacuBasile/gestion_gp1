@@ -28,8 +28,15 @@ public class Equipo {
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
     }
+    
+    public Equipo(int idProyecto, String nombre, LocalDate fechaCreacion, boolean estado) {
+        this.idProyecto = idProyecto;
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
+    }
 
-    public Equipo (String nombre, LocalDate fechaCreacion, boolean estado) {
+    public Equipo(String nombre, LocalDate fechaCreacion, boolean estado) {
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
