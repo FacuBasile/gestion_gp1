@@ -57,8 +57,11 @@ public class Gestion_gp1 {
 //        crearTarea();
         
         //+++++++++++++++++++  PRUEBA COMENTARIO DATA +++++++++++++++++++++ (CHRISTIAN)
-          //crearComentario();  
-          integrarMiembro();
+          crearComentario();  
+          //integrarMiembro();
+          
+        //+++++++++++++++++++  PRUEBA COMPOSICION DATA +++++++++++++++++++++ (CHRISTIAN) 
+          
     }
     //CONECCION
     public static void comprobarConeccion () {

@@ -5,15 +5,18 @@
  */
 package Vistas;
 
+import Data.ComposicionData;
+import Entidades.Composicion;
+import java.time.LocalDate;
+
 /**
  *
  * @author Usuario
  */
 public class ComposicionForm extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ComposicionForm
-     */
+    public static ComposicionData CD = new ComposicionData();
+    
     public ComposicionForm() {
         initComponents();
     }
@@ -30,6 +33,14 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
+        JFechaIncorporacion = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        JIDEquipo = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        JIDMiembro = new javax.swing.JTextField();
+        JIncorporar = new javax.swing.JButton();
+        JSalir = new javax.swing.JButton();
 
         jDesktopPane1.setBackground(new java.awt.Color(7, 146, 83));
 
@@ -37,23 +48,102 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("LLENE EL FORMULARIO");
 
+        jLabel2.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("FECHA DE  INCORPORACION   --->");
+
+        jLabel3.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("ID DEL EQUIPO   --->");
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("ID DEL MIEMBRO   --->");
+
+        JIncorporar.setBackground(new java.awt.Color(135, 218, 223));
+        JIncorporar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        JIncorporar.setText("INCORPORAR");
+        JIncorporar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JIncorporar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JIncorporarActionPerformed(evt);
+            }
+        });
+
+        JSalir.setBackground(new java.awt.Color(135, 218, 223));
+        JSalir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        JSalir.setText("SALIR");
+        JSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        JSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JSalirActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(JFechaIncorporacion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(JIDEquipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(JIDMiembro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(JIncorporar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(JSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(191, 191, 191)
+                .addGap(187, 187, 187)
                 .addComponent(jLabel1)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JFechaIncorporacion, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                            .addComponent(JIDEquipo)
+                            .addComponent(JIDMiembro))
+                        .addGap(51, 51, 51))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(0, 97, Short.MAX_VALUE)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(312, 312, 312))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(JIncorporar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(JSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JFechaIncorporacion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(39, 39, 39)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(JIDEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JIDMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JIncorporar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -70,10 +160,34 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JIncorporarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JIncorporarActionPerformed
+        java.util.Date f1 = JFechaIncorporacion.getDate();
+        long tiempo = f1.getTime(); 
+        java.sql.Date fecha = new java.sql.Date(tiempo);
+        
+        LocalDate FechaIncorporacion = fecha.toLocalDate();
+        int IdEquipo = Integer.parseInt(JIDEquipo.getText());
+        int IdMiembro = Integer.parseInt(JIDMiembro.getText());
+        Composicion c = new Composicion(FechaIncorporacion, IdEquipo, IdMiembro);
+        CD.insertarMiembro(c);
+    }//GEN-LAST:event_JIncorporarActionPerformed
+
+    private void JSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_JSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser JFechaIncorporacion;
+    private javax.swing.JTextField JIDEquipo;
+    private javax.swing.JTextField JIDMiembro;
+    private javax.swing.JButton JIncorporar;
+    private javax.swing.JButton JSalir;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
