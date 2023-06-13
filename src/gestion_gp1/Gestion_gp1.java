@@ -7,12 +7,16 @@ package gestion_gp1;
 
 import Data.ComentarioData;
 import Data.ComposicionData;
+import Data.EquipoData;
 import Data.MiembroData;
+import Data.TareaData;
 import Data.proyectoData;
 import Entidades.Comentario;
 import Entidades.Composicion;
+import Entidades.Equipo;
 import Entidades.Miembro;
 import Entidades.Proyecto;
+import Entidades.Tarea;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
