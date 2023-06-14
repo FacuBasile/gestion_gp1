@@ -131,7 +131,7 @@ public class EquipoData {
         }
     }
     
-    public ArrayList<Equipo> listaEquipo () {
+    public ArrayList<Equipo> listaEquipo() {
         Equipo equipo;
         ArrayList <Equipo> equipos = new ArrayList();
         
