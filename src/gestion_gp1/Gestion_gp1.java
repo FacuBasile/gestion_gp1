@@ -39,7 +39,7 @@ public class Gestion_gp1 {
         
         // ******************* PRUEBAS EQUIPO DATA ******************* (JUAN)
         //pruebacrearEquipo(); //Fuciona
-        pruebaModificarProyecto(); //No Funciona
+        //pruebaModificarProyecto(); //No Funciona
         //pruebaDarBajaProyecto(); //Funciona
         //pruebaBuscarEquipo(); //Funciona
         //pruebaModificarEquipo(); //Funciona
@@ -62,11 +62,10 @@ public class Gestion_gp1 {
         
         
         //+++++++++++++++++++  PRUEBA COMENTARIO DATA +++++++++++++++++++++ (CHRISTIAN)
-          crearComentario();  
-          //integrarMiembro();
+          //crearComentario();  
           
         //+++++++++++++++++++  PRUEBA COMPOSICION DATA +++++++++++++++++++++ (CHRISTIAN) 
-          
+          //integrarMiembro();
     }
     //CONECCION
     public static void comprobarConeccion () {
@@ -201,8 +200,7 @@ public class Gestion_gp1 {
     }
     
     public static void integrarMiembro(){
-        ComposicionData cd = new ComposicionData();
-        //nt dni, String apellido, String nombre, boolean estado
+        ComposicionData cd = new ComposicionData();      
         Composicion m = new Composicion(LocalDate.parse("2023-06-02"), 0, 2);
         cd.insertarMiembro(m);
     }

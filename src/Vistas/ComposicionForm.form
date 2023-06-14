@@ -40,39 +40,37 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                  <Component id="JConfirmar" min="-2" pref="145" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="JSalir" min="-2" pref="140" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="JListadoMiembros" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="JIDEquipo" min="-2" pref="76" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="JIDMiembro" min="-2" pref="93" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="JFechaIncorporacion" min="-2" pref="166" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="JFechaIncorporacion" min="-2" pref="166" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                          <Component id="JConfirmar" min="-2" pref="145" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                          <Component id="JSalir" min="-2" pref="140" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="JListadoEquipos" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,19 +87,19 @@
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JIDEquipo" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="JListadoEquipos" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JIDMiembro" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JListadoMiembros" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="JConfirmar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="JSalir" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                  <EmptySpace pref="61" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -137,7 +135,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ID DEL EQUIPO   ---&gt;"/>
+            <Property name="text" type="java.lang.String" value="ELEGIR EQUIPO   ---&gt;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -148,14 +146,10 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ID DEL MIEMBRO   ---&gt;"/>
+            <Property name="text" type="java.lang.String" value="ELEGIR MIEMBRO   ---&gt;"/>
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="JFechaIncorporacion">
-        </Component>
-        <Component class="javax.swing.JTextField" name="JIDEquipo">
-        </Component>
-        <Component class="javax.swing.JTextField" name="JIDMiembro">
         </Component>
         <Component class="javax.swing.JButton" name="JConfirmar">
           <Properties>
@@ -181,6 +175,35 @@
             </Property>
             <Property name="text" type="java.lang.String" value="SALIR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JSalirActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="JListadoEquipos">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JListadoEquiposActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Equipo&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="JListadoMiembros">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JListadoMiembrosActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Miembro&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

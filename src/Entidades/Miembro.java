@@ -76,7 +76,8 @@ public class Miembro {
 
     @Override
     public String toString() {
-        return "Miembro{" + "idMiembro=" + idMiembro + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", estado=" + estado + '}';
+        return "ID: " + idMiembro + ", NOMBRE: " + nombre + ", APELLIDO: " + apellido;
+        //"Miembro{" + "idMiembro=" + idMiembro + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", estado=" + estado + '}'
     }
     
     

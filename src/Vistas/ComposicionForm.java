@@ -5,20 +5,25 @@
  */
 package Vistas;
 
+import Data.ComposicionData;
 import Entidades.Composicion;
+import Entidades.Equipo;
 import java.time.LocalDate;
+import Data.EquipoData;
+import Data.MiembroData;
+import Entidades.Miembro;
 
 /**
  *
  * @author Usuario
  */
 public class ComposicionForm extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form ComposicionForm
-     */
+    //JListadoEquipos.;  
+    public static ComposicionData CD = new ComposicionData(); 
     public ComposicionForm() {
         initComponents();
+        listadoEquipo();
+        listadoMiembros();
     }
 
     /**
@@ -36,10 +41,10 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         JFechaIncorporacion = new com.toedter.calendar.JDateChooser();
-        JIDEquipo = new javax.swing.JTextField();
-        JIDMiembro = new javax.swing.JTextField();
         JConfirmar = new javax.swing.JButton();
         JSalir = new javax.swing.JButton();
+        JListadoEquipos = new javax.swing.JComboBox<>();
+        JListadoMiembros = new javax.swing.JComboBox<>();
 
         jDesktopPane1.setBackground(new java.awt.Color(7, 146, 83));
 
@@ -53,11 +58,11 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("ID DEL EQUIPO   --->");
+        jLabel3.setText("ELEGIR EQUIPO   --->");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("ID DEL MIEMBRO   --->");
+        jLabel4.setText("ELEGIR MIEMBRO   --->");
 
         JConfirmar.setBackground(new java.awt.Color(100, 155, 44));
         JConfirmar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -71,47 +76,64 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
         JSalir.setBackground(new java.awt.Color(100, 155, 44));
         JSalir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         JSalir.setText("SALIR");
+        JSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JSalirActionPerformed(evt);
+            }
+        });
+
+        JListadoEquipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JListadoEquiposActionPerformed(evt);
+            }
+        });
+
+        JListadoMiembros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JListadoMiembrosActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(JFechaIncorporacion, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(JIDEquipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(JIDMiembro, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(JConfirmar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(JSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(JListadoEquipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(JListadoMiembros, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(188, 188, 188)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(JConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JListadoMiembros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
                         .addGap(30, 30, 30)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JIDEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JIDMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(30, 30, 30)
-                                .addComponent(JFechaIncorporacion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(JFechaIncorporacion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 45, Short.MAX_VALUE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(JConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107)
-                        .addComponent(JSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jLabel1)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addGap(34, 34, 34)
+                        .addComponent(JListadoEquipos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,16 +147,16 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(JIDEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                    .addComponent(JListadoEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JIDMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(67, 67, 67)
+                    .addComponent(jLabel4)
+                    .addComponent(JListadoMiembros, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,23 +174,50 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JConfirmarActionPerformed
-        java.util.Date f1 = JFechaIncorporacion.getDate();
-        long tiempo = f1.getTime(); 
-        java.sql.Date fecha = new java.sql.Date(tiempo);
+//        java.util.Date f1 = JFechaIncorporacion.getDate();
+//        long tiempo = f1.getTime(); 
+//        java.sql.Date fecha = new java.sql.Date(tiempo);
+//        
+//        LocalDate FechaIncorporacion = fecha.toLocalDate();
         
-        LocalDate FechaIncorporacion = fecha.toLocalDate();
-        int IdEquipo = Integer.parseInt(JIDEquipo.getText());
-        int IdMiembro = Integer.parseInt(JIDMiembro.getText());
-        Composicion c = new Composicion(FechaIncorporacion, IdEquipo, IdMiembro);
-        CD.insertarMiembro(c);
+          Equipo e = (Equipo)JListadoEquipos.getSelectedItem();
+          e.getIdEquipo();
+          Miembro m = (Miembro)JListadoEquipos.getSelectedItem();
+          m.getIdMiembro();
+//        Composicion c = new Composicion(FechaIncorporacion, IdEquipo, IdMiembro);
+//        CD.insertarMiembro(c);
     }//GEN-LAST:event_JConfirmarActionPerformed
 
+    private void JSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_JSalirActionPerformed
 
+    private void JListadoEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JListadoEquiposActionPerformed
+        
+    }//GEN-LAST:event_JListadoEquiposActionPerformed
+
+    private void JListadoMiembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JListadoMiembrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JListadoMiembrosActionPerformed
+
+    private void listadoEquipo(){
+        EquipoData EQ = new EquipoData();
+        for(Equipo e :  EQ.listaEquipo()){
+             JListadoEquipos.addItem(e);
+        }
+    }
+    
+    private void listadoMiembros(){
+        MiembroData MD = new MiembroData();
+        for(Miembro m :  MD.listaMiembros()){
+             JListadoMiembros.addItem(m);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JConfirmar;
     private com.toedter.calendar.JDateChooser JFechaIncorporacion;
-    private javax.swing.JTextField JIDEquipo;
-    private javax.swing.JTextField JIDMiembro;
+    private javax.swing.JComboBox<Equipo> JListadoEquipos;
+    private javax.swing.JComboBox<Miembro> JListadoMiembros;
     private javax.swing.JButton JSalir;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
