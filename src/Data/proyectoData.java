@@ -36,7 +36,7 @@ public class proyectoData {
             ps.setString(1, p.getNombre());
             ps.setString(2, p.getDescripcion());
             ps.setDate(3, Date.valueOf(p.getFechaInicio()));
-            ps.setBoolean(4, p.isEstado());
+            ps.setBoolean(4, true);
            
             
             ps.executeUpdate();
