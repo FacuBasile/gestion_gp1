@@ -40,6 +40,10 @@ public class ViewIngresarMiembro extends javax.swing.JInternalFrame {
         jbLimpiar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setResizable(true);
+
         jLabel1.setText("Ingresar Nuevo Miembro");
 
         jLabel2.setText("DNI");

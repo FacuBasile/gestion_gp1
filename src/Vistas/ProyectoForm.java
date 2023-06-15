@@ -5,16 +5,20 @@
  */
 package Vistas;
 
+import Data.proyectoData;
 import Entidades.Proyecto;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author H
  */
 public class ProyectoForm extends javax.swing.JInternalFrame {
-
+proyectoData pd = new proyectoData();
     /**
      * Creates new form ProyectoForm
      */
@@ -39,6 +43,10 @@ public class ProyectoForm extends javax.swing.JInternalFrame {
         BTNguardar = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
+
+        setClosable(true);
+        setIconifiable(true);
+        setResizable(true);
 
         jLabel1.setText("NUEVO PROYECTO");
 
@@ -116,8 +124,18 @@ public class ProyectoForm extends javax.swing.JInternalFrame {
         Proyecto p = new Proyecto();
         p.setNombre(NombreProyecto.getText());
         p.setDescripcion(Descripcion.getText());
-//        jDateChooser1.
-//        p.setFechaInicio();
+        SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+        String fecha = date.format(jDateChooser1.getDate());
+        LocalDate fechaInicio = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        if(fechaInicio.isBefore(LocalDate.now())){
+            JOptionPane.showMessageDialog(this, "LA FECHA TIENE QUE SER POSTERIOR A LA ACTUAL");
+        }else{
+            p.setFechaInicio(fechaInicio);
+            pd.guardarProyecto(p);
+        }
+        
+        
+      
     }//GEN-LAST:event_BTNguardarActionPerformed
 
 

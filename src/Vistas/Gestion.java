@@ -39,9 +39,7 @@ public class Gestion extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jmIngresarMiembro = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -93,9 +91,6 @@ public class Gestion extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem16);
 
-        jMenuItem1.setText("Alta/Baja Miebro");
-        jMenu1.add(jMenuItem1);
-
         jMenuItem3.setText("Asignar Miembro a Equipo");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,14 +98,6 @@ public class Gestion extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
-
-        jMenuItem5.setText("Asignar Tarea");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem5);
 
         jMenuItem4.setText("jMenuItem4");
         jMenu1.add(jMenuItem4);
@@ -142,12 +129,22 @@ public class Gestion extends javax.swing.JFrame {
         jMenu5.setText("Proyectos");
 
         jMenuItem7.setText("Crear Proyecto");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem7);
 
         jMenuItem10.setText("Modificar Proyecto");
         jMenu5.add(jMenuItem10);
 
         jMenuItem6.setText("Ver Proyectos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem6);
 
         jMenuBar1.add(jMenu5);
@@ -179,10 +176,6 @@ public class Gestion extends javax.swing.JFrame {
         jDesktopPane1.moveToFront(CF);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
       
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
     private void jmIngresarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmIngresarMiembroActionPerformed
         // TODO add your handling code here:
         jDesktopPane1.repaint();
@@ -200,6 +193,22 @@ public class Gestion extends javax.swing.JFrame {
         jDesktopPane1.add(vmi);
         jDesktopPane1.moveToFront(vmi);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        ProyectoForm pf = new ProyectoForm();
+        jDesktopPane1.repaint();
+        pf.setVisible(true);
+        jDesktopPane1.add(pf);
+        jDesktopPane1.moveToFront(pf);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        ListaProyectos lp = new ListaProyectos();
+        jDesktopPane1.repaint();
+        lp.setVisible(true);
+        jDesktopPane1.add(lp);
+        jDesktopPane1.moveToFront(lp);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,7 +255,6 @@ public class Gestion extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
@@ -257,7 +265,6 @@ public class Gestion extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jmIngresarMiembro;

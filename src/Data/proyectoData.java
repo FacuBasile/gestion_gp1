@@ -150,4 +150,15 @@ public class proyectoData {
     
     return p;
 }    
+    
+    public ArrayList<Integer> equiposAsignadosAProyecto(int id){
+        ArrayList<Integer> idEquipos = new ArrayList();
+        
+        
+        
+        
+        
+        
+        return idEquipos;
+    }
 }
