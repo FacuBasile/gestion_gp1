@@ -6,6 +6,8 @@
 package Vistas;
 
 import Data.ComposicionData;
+import Data.EquipoData;
+import Data.MiembroData;
 
 /**
  *
@@ -13,9 +15,9 @@ import Data.ComposicionData;
  */
 public class Gestion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Gestion
-     */
+    public static MiembroData MD = new MiembroData();
+    public static EquipoData ED = new EquipoData();
+    
     public Gestion() {
         initComponents();
     }
@@ -35,11 +37,11 @@ public class Gestion extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jmIngresarMiembro = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -76,6 +78,22 @@ public class Gestion extends javax.swing.JFrame {
 
         jMenu1.setText("Miembros");
 
+        jmIngresarMiembro.setText("Ingresar Nuevo Miembro");
+        jmIngresarMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmIngresarMiembroActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmIngresarMiembro);
+
+        jMenuItem16.setText("Modificar Miembro");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem16);
+
         jMenuItem1.setText("Alta/Baja Miebro");
         jMenu1.add(jMenuItem1);
 
@@ -94,12 +112,6 @@ public class Gestion extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem5);
-
-        jMenuItem6.setText("jMenuItem6");
-        jMenu1.add(jMenuItem6);
-
-        jMenuItem16.setText("jMenuItem16");
-        jMenu1.add(jMenuItem16);
 
         jMenuItem4.setText("jMenuItem4");
         jMenu1.add(jMenuItem4);
@@ -184,6 +196,24 @@ public class Gestion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jmIngresarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmIngresarMiembroActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.repaint();
+        ViewIngresarMiembro vim = new ViewIngresarMiembro();
+        vim.setVisible(true);
+        jDesktopPane1.add(vim);
+        jDesktopPane1.moveToFront(vim);
+    }//GEN-LAST:event_jmIngresarMiembroActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.repaint();
+        ViewModificarMiembro vmi = new ViewModificarMiembro();
+        vmi.setVisible(true);
+        jDesktopPane1.add(vmi);
+        jDesktopPane1.moveToFront(vmi);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,9 +271,9 @@ public class Gestion extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jmIngresarMiembro;
     // End of variables declaration//GEN-END:variables
 }
