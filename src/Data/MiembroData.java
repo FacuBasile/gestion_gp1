@@ -208,4 +208,15 @@ public class MiembroData {
         
     }
     
+    public ArrayList<Miembro> miembrosEquipoDeProyecto(int idProyecto){
+        ArrayList<Miembro> miembrosProyecto = new ArrayList();
+        
+        
+        
+        
+        
+        
+        return miembrosProyecto;
+    }
+    
 }

@@ -178,4 +178,31 @@ public class EquipoData {
         }
     }
     
+    public ArrayList<Equipo> listarEquipoPorProyecto(int idProyecto){
+        ArrayList<Equipo> equipos = new ArrayList();
+        Equipo equipoBuscado=null;
+        String query = "SELECT idEquipo FROM equipo WHERE idProyecto = ?";
+         try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idProyecto);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()) {
+                equipoBuscado = new Equipo();
+                equipoBuscado.setIdEquipo(rs.getInt("idEquipo"));
+                equipoBuscado.setIdProyecto(rs.getInt("idProyecto"));
+                equipoBuscado.setNombre(rs.getString("nombre"));
+                equipoBuscado.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+                equipoBuscado.setEstado(rs.getBoolean("estado"));
+                
+                equipos.add(equipoBuscado);
+                
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Equipo no encontrado "+ex);
+        }
+        return equipos;
+    }
 }
