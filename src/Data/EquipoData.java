@@ -48,6 +48,27 @@ public class EquipoData {
         }
     }
     
+    public void crearEquipoConProyecto (Equipo equipo) {
+        String query = "INSERT INTO equipo (idProyecto ,nombre, fechaCreacion, estado) VALUES (?,?,?,?) ";
+    
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            
+            ps.setInt(1, equipo.getIdProyecto());
+            ps.setString(2, equipo.getNombre());
+            ps.setDate(3, Date.valueOf(equipo.getFechaCreacion()));
+            ps.setBoolean(4, equipo.isEstado());
+            
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Equipó Creado");
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al crear el equipo "+ex);;
+        }
+    }
+    
     public void modificarProyecto (int idEquipo, int idProyecto) {
         String query = "UPDATE Equipo SET idProyecto = ? WHERE idEquipo = ?";
         

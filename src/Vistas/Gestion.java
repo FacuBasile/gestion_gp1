@@ -8,6 +8,7 @@ package Vistas;
 import Data.ComposicionData;
 import Data.EquipoData;
 import Data.MiembroData;
+import Data.proyectoData;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Gestion extends javax.swing.JFrame {
 
     public static MiembroData MD = new MiembroData();
     public static EquipoData ED = new EquipoData();
+    public static proyectoData PD = new proyectoData();
     
     public Gestion() {
         initComponents();
@@ -107,6 +109,11 @@ public class Gestion extends javax.swing.JFrame {
         jMenu2.setText("Equipos");
 
         jMenuItem11.setText("Crear Equipo");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem11);
 
         jMenuItem12.setText("Asignar Proyecto");
@@ -116,6 +123,11 @@ public class Gestion extends javax.swing.JFrame {
         jMenu2.add(jMenuItem13);
 
         jMenuItem14.setText("Modificar Equipo");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem14);
 
         jMenuItem15.setText(" Alta/Baja Equipo");
@@ -209,6 +221,24 @@ public class Gestion extends javax.swing.JFrame {
         jDesktopPane1.add(lp);
         jDesktopPane1.moveToFront(lp);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.repaint();
+        ViewIngresarEquipo vie = new ViewIngresarEquipo();
+        vie.setVisible(true);
+        jDesktopPane1.add(vie);
+        jDesktopPane1.moveToFront(vie);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.repaint();
+        ViewModificarEquipo vme = new ViewModificarEquipo();
+        vme.setVisible(true);
+        jDesktopPane1.add(vme);
+        jDesktopPane1.moveToFront(vme);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     /**
      * @param args the command line arguments

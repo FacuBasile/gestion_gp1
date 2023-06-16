@@ -28,7 +28,6 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
         for(Miembro m : Gestion.MD.listaMiembros()) {
             jcbBuscar.addItem(m);
         }
-             
     }
     
     @SuppressWarnings("unchecked")
@@ -43,7 +42,6 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
         jtApellido = new javax.swing.JTextField();
         jtNombre = new javax.swing.JTextField();
         jbActualizar = new javax.swing.JButton();
-        jbLimpiar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jrbAlta = new javax.swing.JRadioButton();
         jrbBaja = new javax.swing.JRadioButton();
@@ -64,8 +62,6 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
                 jbActualizarActionPerformed(evt);
             }
         });
-
-        jbLimpiar.setText("LIMPIAR");
 
         jbSalir.setText("SALIR");
 
@@ -119,9 +115,7 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
                             .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbActualizar)
-                        .addGap(38, 38, 38)
-                        .addComponent(jbLimpiar)
-                        .addGap(40, 40, 40)
+                        .addGap(155, 155, 155)
                         .addComponent(jbSalir)))
                 .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -157,7 +151,6 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbActualizar)
-                    .addComponent(jbLimpiar)
                     .addComponent(jbSalir))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
@@ -193,7 +186,7 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
             Miembro miembro = new Miembro(id,dni,apellido,nombre,jrbAlta.isSelected());
             
             Gestion.MD.actualizarMiembro(miembro);
-            
+            //Verificar como actualizar la lista luego de modificar algun miembro
             //completarComboBox();
             
             
@@ -226,7 +219,6 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton jbActualizar;
-    private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<Miembro> jcbBuscar;
     private javax.swing.JRadioButton jrbAlta;
