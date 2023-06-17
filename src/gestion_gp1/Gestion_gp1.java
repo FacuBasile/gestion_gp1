@@ -39,7 +39,7 @@ public class Gestion_gp1 {
         
         // ******************* PRUEBAS EQUIPO DATA ******************* (JUAN)
         //pruebacrearEquipo(); //Fuciona
-        //pruebaModificarProyecto(); //No Funciona
+        pruebaModificarProyecto(); //No Funciona
         //pruebaDarBajaProyecto(); //Funciona
         //pruebaBuscarEquipo(); //Funciona
         //pruebaModificarEquipo(); //Funciona
@@ -90,7 +90,7 @@ public class Gestion_gp1 {
     
     public static void pruebaModificarProyecto () {
         EquipoData equipoData = new EquipoData();
-        equipoData.modificarProyecto(2, 1);
+        equipoData.modificarProyecto(2, 0);
     }
     
     public static void pruebaDarBajaProyecto () {

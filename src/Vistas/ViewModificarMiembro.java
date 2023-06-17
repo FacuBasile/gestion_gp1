@@ -64,6 +64,11 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
         });
 
         jbSalir.setText("SALIR");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         jrbAlta.setText("dar ALTA");
         jrbAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +215,11 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
             jrbAlta.setSelected(false);
         }
     }//GEN-LAST:event_jrbBajaActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

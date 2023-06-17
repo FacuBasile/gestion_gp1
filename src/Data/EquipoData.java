@@ -70,17 +70,34 @@ public class EquipoData {
     }
     
     public void modificarProyecto (int idEquipo, int idProyecto) {
-        String query = "UPDATE Equipo SET idProyecto = ? WHERE idEquipo = ?";
+        
         
         try {
-            PreparedStatement ps = con.prepareStatement(query);
-            ps.setInt(1, idEquipo);
-            ps.setInt(2, idProyecto);
+            if (idProyecto == 0) {
+                String query = "UPDATE Equipo SET idProyecto = NULL WHERE equipo.idEquipo = ?";
+                PreparedStatement ps = con.prepareStatement(query);
+                
+                //ps.setInt(1, idProyecto);
+                ps.setInt(1, idEquipo);
+                
+                int update = ps.executeUpdate();
             
-            int update = ps.executeUpdate();
+                if (update == 1) {
+                    JOptionPane.showMessageDialog(null, "Proyecto ELIMINADO del equipo Exitosamente");
+                }
             
-            if (update == 1) {
-                JOptionPane.showMessageDialog(null, "Proyecto Agregado al Equipo");
+            } else {
+                String query = "UPDATE Equipo SET idProyecto = ? WHERE idEquipo = ?";
+                PreparedStatement ps = con.prepareStatement(query);
+                
+                ps.setInt(1, idProyecto);
+                ps.setInt(2, idEquipo);
+
+                int update = ps.executeUpdate();
+                
+                if (update == 1) {
+                    JOptionPane.showMessageDialog(null, "Proyecto Agregado al Equipo");
+                }
             }
             
         } catch (SQLException ex) {
