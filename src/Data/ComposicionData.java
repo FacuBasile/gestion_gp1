@@ -12,7 +12,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -44,10 +47,70 @@ public class ComposicionData {
             ResultSet rs = stmt.getGeneratedKeys();
             
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "EL MIEMBRO SE INCORPORÓ AL EQUIPO");
-            }
+                JOptionPane.showMessageDialog(null, "EL MIEMBRO FUE ASIGNADO AL EQUIPO " + c.getIdEquipo());
+            }  
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "ERROR AL CARGAR MIEMBRO AL EQUIPO" + ex);
         }
+    }
+    
+    public ArrayList<Composicion> listarMiembrosEquipo(){
+        Composicion c;
+        ArrayList<Composicion> listado = new ArrayList();
+        
+        String query = "SELECT idMiembroEq, fechaIncorporacion, idEquipo, idMiembro FROM composicion";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                c = new Composicion();
+                c.setIdMiembroEq(rs.getInt("idMiembroEq"));
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+                String fecha = formatoFecha.format(rs.getDate("fechaIncorporacion"));
+                LocalDate fechaNueva = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                c.setFechaIncorporacion(fechaNueva);
+                c.setIdEquipo(rs.getInt("idEquipo"));
+                c.setIdMiembro(rs.getInt("idMiembro"));
+                
+                listado.add(c);
+            }
+            
+            return listado;
+        } catch (SQLException ex) {
+            Logger.getLogger(ComposicionData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+    
+    public void actualizarMiembroEquipo(Composicion c){
+            String query = "UPDATE `composicion` SET `idEquipo`= ? WHERE idMiembro = ?";          
+        try {    
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, c.getIdEquipo());
+            ps.setInt(2, c.getIdMiembro());
+            
+            int f = ps.executeUpdate();
+            
+            if(f == 1){
+                JOptionPane.showMessageDialog(null, "EL MIEMBRO FUE ASIGNADO A OTRO EQUIPO" + "\n" +
+                                                    "EQUIPO " + c.getIdEquipo());
+            }
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "ERROR " + ex);
+        }
+    }
+    
+    public void borrarMiembro(){
+            String query = "DELETE FROM `composicion` WHERE idMiembro = ? ";
+        try {            
+            PreparedStatement ps = con.prepareStatement(query);
+            
+        } catch (SQLException ex) {
+                Logger.getLogger(ComposicionData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 }
