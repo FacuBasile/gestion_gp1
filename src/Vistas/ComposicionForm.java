@@ -29,7 +29,6 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     public ComposicionForm() {
         initComponents();
         listadoEquipo();
-        listadoMiembros();
     }
 
     /**
@@ -88,6 +87,11 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
             }
         });
 
+        JListadoEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JListadoEquiposMouseClicked(evt);
+            }
+        });
         JListadoEquipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JListadoEquiposActionPerformed(evt);
@@ -115,15 +119,11 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(188, 188, 188)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(111, 111, 111)
+                .addGap(121, 121, 121)
                 .addComponent(JConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
+                .addGap(119, 119, 119))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,6 +140,10 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3)
                         .addGap(34, 34, 34)
                         .addComponent(JListadoEquipos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(188, 188, 188)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,6 +212,7 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
           } else {
               Composicion c = new Composicion(f_incorporacion,  e.getIdEquipo(), m.getIdMiembro());
               CD.insertarMiembro(c);
+              listadoMiembros();
           }
     }//GEN-LAST:event_JConfirmarActionPerformed
 
@@ -216,12 +221,16 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JSalirActionPerformed
 
     private void JListadoEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JListadoEquiposActionPerformed
-        
+        listadoMiembros();
     }//GEN-LAST:event_JListadoEquiposActionPerformed
 
     private void JListadoMiembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JListadoMiembrosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JListadoMiembrosActionPerformed
+
+    private void JListadoEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JListadoEquiposMouseClicked
+        
+    }//GEN-LAST:event_JListadoEquiposMouseClicked
 
     private void listadoEquipo(){
         for(Equipo e :  ED.listaEquipo()){
@@ -230,8 +239,13 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     }
     
     private void listadoMiembros(){
-        for(Miembro m :  MD.listaMiembros()){
+        JListadoMiembros.removeAllItems();
+        for(Miembro m :  MD.listarMiembrosSinEquipo()){
+             if(MD.listarMiembrosSinEquipo().isEmpty()){
+                JOptionPane.showMessageDialog(this, "TODOS LOS MIEMBROS ASIGNADOS");
+             } else {
              JListadoMiembros.addItem(m);
+             }
         }
     }
     

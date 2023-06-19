@@ -77,12 +77,11 @@ public class ComposicionData {
                 listado.add(c);
             }
             
-            return listado;
         } catch (SQLException ex) {
             Logger.getLogger(ComposicionData.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;
+        return listado;
     }
     
     public void actualizarMiembroEquipo(Composicion c){

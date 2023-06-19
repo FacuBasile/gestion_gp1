@@ -63,6 +63,7 @@ ComentarioData CD = new ComentarioData();
         BTNasignarTarea = new javax.swing.JButton();
         btnListarTareas = new javax.swing.JButton();
         VerEquiposBTN = new javax.swing.JButton();
+        BTNasignarTarea1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -106,6 +107,13 @@ ComentarioData CD = new ComentarioData();
             }
         });
 
+        BTNasignarTarea1.setText("Eliminar Miembro del Equipo");
+        BTNasignarTarea1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNasignarTarea1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -134,8 +142,9 @@ ComentarioData CD = new ComentarioData();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BTNasignarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnListarTareas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 464, Short.MAX_VALUE))
+                    .addComponent(btnListarTareas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BTNasignarTarea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 384, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +166,9 @@ ComentarioData CD = new ComentarioData();
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnListarTareas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BTNasignarTarea))
+                        .addComponent(BTNasignarTarea)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTNasignarTarea1))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
@@ -188,6 +199,10 @@ ComentarioData CD = new ComentarioData();
         jPanel1.add(CF);
         CF.moveToFront();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BTNasignarTarea1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNasignarTarea1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTNasignarTarea1ActionPerformed
     
     
     public void llenarTabla(){
@@ -219,6 +234,7 @@ ComentarioData CD = new ComentarioData();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNasignarTarea;
+    private javax.swing.JButton BTNasignarTarea1;
     private javax.swing.JList ListaEquipos;
     private javax.swing.JList ListaMiembros;
     private javax.swing.JButton VerEquiposBTN;
