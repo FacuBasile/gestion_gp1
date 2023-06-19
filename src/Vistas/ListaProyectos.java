@@ -182,6 +182,7 @@ ComentarioData CD = new ComentarioData();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ComposicionForm CF = new ComposicionForm();
+        jPanel1.removeAll();
         jPanel1.repaint();
         CF.setVisible(true);
         jPanel1.add(CF);
