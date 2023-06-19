@@ -55,7 +55,6 @@ ComentarioData CD = new ComentarioData();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ListaEquipos = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
@@ -63,6 +62,7 @@ ComentarioData CD = new ComentarioData();
         ListaMiembros = new javax.swing.JList();
         BTNasignarTarea = new javax.swing.JButton();
         btnListarTareas = new javax.swing.JButton();
+        VerEquiposBTN = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -73,8 +73,6 @@ ComentarioData CD = new ComentarioData();
         jLabel1.setText("PROYECTOS:");
 
         jButton1.setText("ASIGNAR NUEVO EQUIPO");
-
-        jLabel3.setText("EQUIPOS:");
 
         ListaEquipos.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -96,6 +94,13 @@ ComentarioData CD = new ComentarioData();
 
         btnListarTareas.setText("Ver Tareas");
 
+        VerEquiposBTN.setText("EQUIPOS:");
+        VerEquiposBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerEquiposBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -104,14 +109,14 @@ ComentarioData CD = new ComentarioData();
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(87, 87, 87)
+                                .addGap(6, 6, 6)
+                                .addComponent(VerEquiposBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(jLabel1))
@@ -136,8 +141,8 @@ ComentarioData CD = new ComentarioData();
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(VerEquiposBTN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -165,6 +170,10 @@ ComentarioData CD = new ComentarioData();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void VerEquiposBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEquiposBTNActionPerformed
+        listarEquipos();
+    }//GEN-LAST:event_VerEquiposBTNActionPerformed
     
     
     public void llenarTabla(){
@@ -184,8 +193,12 @@ ComentarioData CD = new ComentarioData();
         ListaEquipos.setModel(modeloEquipos);
         Proyecto idproyecto=(Proyecto) tm.getValueAt(jTable1.getSelectedRow(), WIDTH);
         for(Equipo e : ed.listarEquipoPorProyecto(idproyecto.getIdProyecto())){
-            
+            modeloEquipos.addElement(e);
         }
+    }
+    
+    public void listarMiembros(){
+        
     }
     
    
@@ -194,10 +207,10 @@ ComentarioData CD = new ComentarioData();
     private javax.swing.JButton BTNasignarTarea;
     private javax.swing.JList ListaEquipos;
     private javax.swing.JList ListaMiembros;
+    private javax.swing.JButton VerEquiposBTN;
     private javax.swing.JButton btnListarTareas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
