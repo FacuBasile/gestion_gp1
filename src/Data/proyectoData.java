@@ -5,6 +5,7 @@
  */
 package Data;
 
+import Entidades.Equipo;
 import Entidades.Proyecto;
 import java.sql.Connection;
 import java.sql.Date;
@@ -151,14 +152,14 @@ public class proyectoData {
     return p;
 }    
     
-    public ArrayList<Integer> equiposAsignadosAProyecto(int id){
-        ArrayList<Integer> idEquipos = new ArrayList();
+    public ArrayList<Equipo> equiposAsignadosAProyecto(int id){
+        ArrayList<Integer> equipos = new ArrayList();
+        String query= "SELECT * FROM EQUIPO WHERE idProyecto = ?";
         
         
         
         
         
-        
-        return idEquipos;
+        return equipos;
     }
 }

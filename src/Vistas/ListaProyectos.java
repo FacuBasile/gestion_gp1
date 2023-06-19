@@ -68,6 +68,7 @@ ComentarioData CD = new ComentarioData();
         setIconifiable(true);
         setResizable(true);
 
+        jTable1.setFocusable(false);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("PROYECTOS:");
@@ -181,12 +182,7 @@ ComentarioData CD = new ComentarioData();
     }//GEN-LAST:event_VerEquiposBTNActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ComposicionForm CF = new ComposicionForm();
-        jPanel1.removeAll();
-        jPanel1.repaint();
-        CF.setVisible(true);
-        jPanel1.add(CF);
-        CF.moveToFront();
+       
     }//GEN-LAST:event_jButton1ActionPerformed
     
     
