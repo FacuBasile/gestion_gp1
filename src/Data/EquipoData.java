@@ -219,7 +219,7 @@ public class EquipoData {
     public ArrayList<Equipo> listarEquipoPorProyecto(int idProyecto){
         ArrayList<Equipo> equipos = new ArrayList();
         Equipo equipoBuscado=null;
-        String query = "SELECT idEquipo FROM equipo WHERE idProyecto = ?";
+        String query = "SELECT * FROM equipo WHERE idProyecto = ?";
          try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, idProyecto);
