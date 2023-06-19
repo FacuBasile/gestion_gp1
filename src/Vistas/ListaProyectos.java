@@ -73,6 +73,11 @@ ComentarioData CD = new ComentarioData();
         jLabel1.setText("PROYECTOS:");
 
         jButton1.setText("ASIGNAR NUEVO EQUIPO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         ListaEquipos.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -174,6 +179,14 @@ ComentarioData CD = new ComentarioData();
     private void VerEquiposBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEquiposBTNActionPerformed
         listarEquipos();
     }//GEN-LAST:event_VerEquiposBTNActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ComposicionForm CF = new ComposicionForm();
+        jPanel1.repaint();
+        CF.setVisible(true);
+        jPanel1.add(CF);
+        CF.moveToFront();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     
     public void llenarTabla(){
@@ -191,7 +204,7 @@ ComentarioData CD = new ComentarioData();
     
     public void listarEquipos(){
         ListaEquipos.setModel(modeloEquipos);
-        Proyecto idproyecto=(Proyecto) tm.getValueAt(jTable1.getSelectedRow(), WIDTH);
+        Proyecto idproyecto =(Proyecto)tm.getValueAt(jTable1.getSelectedRow(),jTable1.getSelectedColumn());
         for(Equipo e : ed.listarEquipoPorProyecto(idproyecto.getIdProyecto())){
             modeloEquipos.addElement(e);
         }
