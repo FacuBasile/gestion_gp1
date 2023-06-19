@@ -30,6 +30,10 @@ public class Composicion {
         this.idMiembro = idMiembro;
     }
 
+    public Composicion() {
+     
+    }
+
     public int getIdMiembroEq() {
         return idMiembroEq;
     }

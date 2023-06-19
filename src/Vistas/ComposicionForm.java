@@ -12,14 +12,20 @@ import java.time.LocalDate;
 import Data.EquipoData;
 import Data.MiembroData;
 import Entidades.Miembro;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Usuario
  */
 public class ComposicionForm extends javax.swing.JInternalFrame {
-    //JListadoEquipos.;  
     public static ComposicionData CD = new ComposicionData(); 
+    public static EquipoData ED = new EquipoData(); 
+    public static MiembroData MD = new MiembroData(); 
     public ComposicionForm() {
         initComponents();
         listadoEquipo();
@@ -174,18 +180,35 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JConfirmarActionPerformed
-//        java.util.Date f1 = JFechaIncorporacion.getDate();
-//        long tiempo = f1.getTime(); 
-//        java.sql.Date fecha = new java.sql.Date(tiempo);
-//        
-//        LocalDate FechaIncorporacion = fecha.toLocalDate();
-        
+          int n = 1;
+          SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+          String fecha = formatoFecha.format(JFechaIncorporacion.getDate());
+          LocalDate f_incorporacion = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
           Equipo e = (Equipo)JListadoEquipos.getSelectedItem();
-          e.getIdEquipo();
-          Miembro m = (Miembro)JListadoEquipos.getSelectedItem();
-          m.getIdMiembro();
-//        Composicion c = new Composicion(FechaIncorporacion, IdEquipo, IdMiembro);
-//        CD.insertarMiembro(c);
+          Miembro m = (Miembro)JListadoMiembros.getSelectedItem();
+             
+          for(Composicion com : CD.listarMiembrosEquipo()){
+               int IdE = com.getIdEquipo();
+               int IdM = com.getIdMiembro();
+               if(IdE == e.getIdEquipo() && IdM == m.getIdMiembro()){
+                   n = 0;
+                   break;
+               } else if (IdM == m.getIdMiembro() && IdE != e.getIdEquipo()){
+                   n = -1;
+                   break;
+               }
+          }
+              
+          if(n == 0){
+              JOptionPane.showMessageDialog(this, "EL MIEMBRO YA ESTÁ EN EL EQUIPO " + e.getIdEquipo());
+          } else if (n == -1){                     
+              Composicion c = new Composicion(f_incorporacion,  e.getIdEquipo(), m.getIdMiembro());
+              CD.actualizarMiembroEquipo(c);
+          } else {
+              Composicion c = new Composicion(f_incorporacion,  e.getIdEquipo(), m.getIdMiembro());
+              CD.insertarMiembro(c);
+          }
     }//GEN-LAST:event_JConfirmarActionPerformed
 
     private void JSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JSalirActionPerformed
@@ -201,18 +224,17 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JListadoMiembrosActionPerformed
 
     private void listadoEquipo(){
-        EquipoData EQ = new EquipoData();
-        for(Equipo e :  EQ.listaEquipo()){
+        for(Equipo e :  ED.listaEquipo()){
              JListadoEquipos.addItem(e);
         }
     }
     
     private void listadoMiembros(){
-        MiembroData MD = new MiembroData();
         for(Miembro m :  MD.listaMiembros()){
              JListadoMiembros.addItem(m);
         }
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JConfirmar;
     private com.toedter.calendar.JDateChooser JFechaIncorporacion;
@@ -225,4 +247,6 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
+
+    
 }
