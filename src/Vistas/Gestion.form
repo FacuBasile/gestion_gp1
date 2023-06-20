@@ -51,11 +51,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem4"/>
-              </Properties>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
@@ -128,11 +123,6 @@
               </Events>
             </MenuItem>
           </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jMenu6"/>
-          </Properties>
         </Menu>
       </SubComponents>
     </Menu>

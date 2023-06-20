@@ -231,7 +231,7 @@ public class EquipoData {
                 equipoBuscado.setIdEquipo(rs.getInt("idEquipo"));
                 equipoBuscado.setIdProyecto(rs.getInt("idProyecto"));
                 equipoBuscado.setNombre(rs.getString("nombre"));
-                equipoBuscado.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+//                equipoBuscado.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
                 equipoBuscado.setEstado(rs.getBoolean("estado"));
                 
                 equipos.add(equipoBuscado);
