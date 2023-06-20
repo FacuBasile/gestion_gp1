@@ -7,6 +7,7 @@ package Vistas;
 
 import Data.ComentarioData;
 import Data.EquipoData;
+import Data.MiembroData;
 import Data.TareaData;
 import Data.proyectoData;
 import Entidades.Equipo;
@@ -26,9 +27,10 @@ DefaultTableModel tm = new DefaultTableModel();
 proyectoData pd = new proyectoData();
 EquipoData ed = new EquipoData();
 DefaultListModel<Equipo> modeloEquipos = new DefaultListModel();
-DefaultListModel<Miembro> modeloMiembros = new DefaultListModel();
+DefaultListModel<String> modeloMiembros = new DefaultListModel();
 TareaData TD = new TareaData();
 ComentarioData CD = new ComentarioData();
+MiembroData MD = new MiembroData();
 
 
     /**
@@ -41,6 +43,11 @@ ComentarioData CD = new ComentarioData();
         
         initComponents();
         llenarTabla();
+        ListaEquipos.setModel(modeloEquipos);
+        modeloEquipos.removeAllElements();
+        
+        ListaMiembros.setModel(modeloMiembros);
+        modeloMiembros.removeAllElements();
         
         
     }
@@ -62,14 +69,19 @@ ComentarioData CD = new ComentarioData();
         ListaMiembros = new javax.swing.JList();
         BTNasignarTarea = new javax.swing.JButton();
         btnListarTareas = new javax.swing.JButton();
-        VerEquiposBTN = new javax.swing.JButton();
         BTNasignarTarea1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
 
         jTable1.setFocusable(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("PROYECTOS:");
@@ -86,6 +98,16 @@ ComentarioData CD = new ComentarioData();
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        ListaEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListaEquiposMouseClicked(evt);
+            }
+        });
+        ListaEquipos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListaEquiposValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(ListaEquipos);
 
         jLabel4.setText("MIEMBROS:");
@@ -101,19 +123,14 @@ ComentarioData CD = new ComentarioData();
 
         btnListarTareas.setText("Ver Tareas");
 
-        VerEquiposBTN.setText("EQUIPOS:");
-        VerEquiposBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VerEquiposBTNActionPerformed(evt);
-            }
-        });
-
         BTNasignarTarea1.setText("Eliminar Miembro del Equipo");
         BTNasignarTarea1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTNasignarTarea1ActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("EQUIPOS:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,14 +140,13 @@ ComentarioData CD = new ComentarioData();
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(VerEquiposBTN)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(jLabel1))
@@ -157,7 +173,7 @@ ComentarioData CD = new ComentarioData();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(VerEquiposBTN))
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -188,42 +204,79 @@ ComentarioData CD = new ComentarioData();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void VerEquiposBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEquiposBTNActionPerformed
-        listarEquipos();
-    }//GEN-LAST:event_VerEquiposBTNActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       dispose();
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BTNasignarTarea1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNasignarTarea1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BTNasignarTarea1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+        
+        
+        int filaSeleccionada = jTable1.rowAtPoint(evt.getPoint());
+        
+         
+        int idproy = Integer.parseInt((String) jTable1.getValueAt(filaSeleccionada, 0));
+        
+       listarEquiposProyecto( idproy);
+       
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void ListaEquiposValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaEquiposValueChanged
+        Equipo e = (Equipo) ListaEquipos.getSelectedValue();
+        int idEquipo = e.getIdEquipo();
+        
+        listarMiembrosEquipo(idEquipo);
+    }//GEN-LAST:event_ListaEquiposValueChanged
+
+    private void ListaEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaEquiposMouseClicked
+       Equipo e = (Equipo) ListaEquipos.getSelectedValue();
+        int idEquipo = e.getIdEquipo();
+        
+        listarMiembrosEquipo(idEquipo);
+    }//GEN-LAST:event_ListaEquiposMouseClicked
     
     
     public void llenarTabla(){
         
        String[] nombresColumnas = {"ID","Nombre","Descripcion"};
+       
        tm.setColumnIdentifiers(nombresColumnas);
        jTable1.setModel(tm);
        
        for(Proyecto p : pd.proyectos()){
-           tm.addRow(new Object[]{
-              p.getIdProyecto(),p.getNombre(),p.getDescripcion()
-           });
-       }
+           String [] FilaDatosProyecto={String.valueOf(p.getIdProyecto()),p.getNombre(),p.getDescripcion()};
+           
+           tm.addRow(FilaDatosProyecto);
+           jTable1.setModel(tm);
+        }
+       
     }
     
-    public void listarEquipos(){
-        ListaEquipos.setModel(modeloEquipos);
-        Proyecto idproyecto =(Proyecto)tm.getValueAt(jTable1.getSelectedRow(),jTable1.getSelectedColumn());
-        for(Equipo e : ed.listarEquipoPorProyecto(idproyecto.getIdProyecto())){
-            modeloEquipos.addElement(e);
+    
+    
+    public void listarMiembrosEquipo(int idEquipo){
+        modeloMiembros.removeAllElements();
+        
+        for (Miembro m : MD.miembrosDeEquipo(idEquipo) ){
+            
+            modeloMiembros.addElement(m.toString());
+            ListaMiembros.setModel(modeloEquipos);
         }
     }
     
-    public void listarMiembros(){
-        
+    
+    public void listarEquiposProyecto(int idproy){
+        modeloEquipos.removeAllElements();
+        for(Equipo e : ed.listarEquipoPorProyecto(idproy)){
+            
+            modeloEquipos.addElement(e);
+            
+        }
     }
     
    
@@ -233,10 +286,10 @@ ComentarioData CD = new ComentarioData();
     private javax.swing.JButton BTNasignarTarea1;
     private javax.swing.JList ListaEquipos;
     private javax.swing.JList ListaMiembros;
-    private javax.swing.JButton VerEquiposBTN;
     private javax.swing.JButton btnListarTareas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

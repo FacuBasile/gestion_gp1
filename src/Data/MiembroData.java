@@ -209,14 +209,30 @@ public class MiembroData {
     }
     
     public ArrayList<Miembro> miembrosDeEquipo(int idProyecto){
-        ArrayList<Miembro> miembrosProyecto = new ArrayList();
+         Miembro m;
+        ArrayList<Miembro> listado = new ArrayList();
         
+        String query = "SELECT * FROM miembro, composicion WHERE composicion.idMiembro = miembro.idMiembro)";
         
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                m = new Miembro();
+                m.setIdMiembro(rs.getInt("idMiembro"));            
+                m.setDni(rs.getInt("dni"));
+                m.setApellido(rs.getString("apellido"));
+                m.setNombre(rs.getString("nombre"));
+                m.setEstado(true);
+                listado.add(m);
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR" + ex);
+        }
         
-        
-        
-        
-        return miembrosProyecto;
+        return listado;
     }
     
     public ArrayList<Miembro> listarMiembrosSinEquipo(){
