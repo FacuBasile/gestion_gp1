@@ -212,10 +212,11 @@ public class MiembroData {
          Miembro m;
         ArrayList<Miembro> listado = new ArrayList();
         
-        String query = "SELECT * FROM miembro, composicion WHERE composicion.idMiembro = miembro.idMiembro";
+        String query = "SELECT * FROM miembro, composicion WHERE composicion.idMiembro = miembro.idMiembro AND idEquipo = ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idProyecto);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){

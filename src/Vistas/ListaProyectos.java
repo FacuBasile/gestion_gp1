@@ -120,6 +120,11 @@ MiembroData MD = new MiembroData();
         jScrollPane3.setViewportView(ListaMiembros);
 
         BTNasignarTarea.setText("Asignar Tarea");
+        BTNasignarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNasignarTareaActionPerformed(evt);
+            }
+        });
 
         btnListarTareas.setText("Ver Tareas");
         btnListarTareas.addActionListener(new java.awt.event.ActionListener() {
@@ -218,11 +223,10 @@ MiembroData MD = new MiembroData();
         // TODO add your handling code here:
     }//GEN-LAST:event_BTNasignarTarea1ActionPerformed
 
-<<<<<<< HEAD
     private void btnListarTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTareasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarTareasActionPerformed
-=======
+
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
         
@@ -249,7 +253,11 @@ MiembroData MD = new MiembroData();
         
         listarMiembrosEquipo(idEquipo);
     }//GEN-LAST:event_ListaEquiposMouseClicked
->>>>>>> 8daa9d0c2503421767f938d964b05ad5efa394f7
+
+    private void BTNasignarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNasignarTareaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTNasignarTareaActionPerformed
+
     
     
     public void llenarTabla(){
@@ -276,7 +284,7 @@ MiembroData MD = new MiembroData();
         for (Miembro m : MD.miembrosDeEquipo(idEquipo) ){
             
             modeloMiembros.addElement(m.toString());
-            ListaMiembros.setModel(modeloEquipos);
+            ListaMiembros.setModel(modeloMiembros);
         }
     }
     
