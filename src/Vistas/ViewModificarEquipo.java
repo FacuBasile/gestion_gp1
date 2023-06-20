@@ -187,16 +187,17 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
         
         int idProyecto = jcbProyecto.getSelectedIndex();
         String nombre = jtNombre.getText();
+        int idEquipo = jcbBuscar.getSelectedIndex();
         
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
         String fecha = formatoFecha.format(jdcFecha.getDate());
         LocalDate nacimiento = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         
         
-        Equipo equipo = new Equipo(idProyecto, nombre, nacimiento, jrbAlta.isSelected());
+        Equipo equipo = new Equipo(nombre, nacimiento, jrbAlta.isSelected());
         
         Gestion.ED.modificarEquipo(equipo);
-        
+        Gestion.ED.modificarProyecto(idEquipo, idProyecto);
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jcbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbBuscarActionPerformed
