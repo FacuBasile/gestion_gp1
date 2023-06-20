@@ -212,7 +212,7 @@ public class MiembroData {
          Miembro m;
         ArrayList<Miembro> listado = new ArrayList();
         
-        String query = "SELECT * FROM miembro, composicion WHERE composicion.idMiembro = miembro.idMiembro)";
+        String query = "SELECT * FROM miembro, composicion WHERE composicion.idMiembro = miembro.idMiembro";
         
         try {
             PreparedStatement ps = con.prepareStatement(query);
