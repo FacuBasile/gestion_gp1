@@ -39,7 +39,7 @@ public class Gestion_gp1 {
         
         // ******************* PRUEBAS EQUIPO DATA ******************* (JUAN)
         //pruebacrearEquipo(); //Fuciona
-        pruebaModificarProyecto(); //No Funciona
+//        pruebaModificarProyecto(); //No Funciona
         //pruebaDarBajaProyecto(); //Funciona
         //pruebaBuscarEquipo(); //Funciona
         //pruebaModificarEquipo(); //Funciona
@@ -59,7 +59,7 @@ public class Gestion_gp1 {
         
         // PRUEBAS PROYECTO DATA (FACU)
         //pruebasProyectoData();
-        
+        EquiposDeProyecto();
         
         //+++++++++++++++++++  PRUEBA COMENTARIO DATA +++++++++++++++++++++ (CHRISTIAN)
           //crearComentario();  
@@ -153,6 +153,14 @@ public class Gestion_gp1 {
     }
     
     // ******************* PRUEBAS PROYECTO DATA ******************* (FACU)
+    
+    public static void EquiposDeProyecto(){
+        EquipoData ed = new EquipoData();
+        
+        for(Equipo e : ed.listarEquipoPorProyecto(2)){
+            System.out.println(e);
+        }
+    }
     
     public static void pruebasProyectoData(){
         System.out.println("se crea proyecto");

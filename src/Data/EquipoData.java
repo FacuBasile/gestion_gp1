@@ -226,7 +226,7 @@ public class EquipoData {
             
             ResultSet rs = ps.executeQuery();
             
-            if(rs.next()) {
+            while(rs.next()) {
                 equipoBuscado = new Equipo();
                 equipoBuscado.setIdEquipo(rs.getInt("idEquipo"));
                 equipoBuscado.setIdProyecto(rs.getInt("idProyecto"));

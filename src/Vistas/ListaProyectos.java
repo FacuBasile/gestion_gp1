@@ -6,6 +6,7 @@
 package Vistas;
 
 import Data.ComentarioData;
+import Data.ComposicionData;
 import Data.EquipoData;
 import Data.MiembroData;
 import Data.TareaData;
@@ -28,12 +29,13 @@ DefaultTableModel tm = new DefaultTableModel();
 proyectoData pd = new proyectoData();
 EquipoData ed = new EquipoData();
 DefaultListModel<Equipo> modeloEquipos = new DefaultListModel();
-DefaultListModel<String> modeloMiembros = new DefaultListModel();
+DefaultListModel<Miembro> modeloMiembros = new DefaultListModel();
 TareaData TD = new TareaData();
 ComentarioData CD = new ComentarioData();
+ComposicionData compD = new ComposicionData();
 MiembroData MD = new MiembroData();
 ViewModificarEquipo ME = new ViewModificarEquipo();
-
+int idproy;
 
     /**
      * Creates new form ListaProyectos
@@ -72,10 +74,10 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
         jScrollPane3 = new javax.swing.JScrollPane();
         ListaMiembros = new javax.swing.JList();
         BTNeliminarMiembroDelEquipo = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         BTNverTareas = new javax.swing.JButton();
         BTNasignarNuevaTarea = new javax.swing.JButton();
+        BTNverEquipos = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -131,8 +133,6 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
             }
         });
 
-        jLabel2.setText("EQUIPOS:");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -153,6 +153,13 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
             }
         });
 
+        BTNverEquipos.setText("VER EQUIPOS");
+        BTNverEquipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNverEquiposActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,11 +170,11 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BTNverEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(jLabel1))
@@ -184,7 +191,7 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
                         .addComponent(BTNeliminarMiembroDelEquipo)
                         .addComponent(BTNverTareas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BTNasignarNuevaTarea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(0, 27, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +205,7 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
-                            .addComponent(jLabel2))
+                            .addComponent(BTNverEquipos))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -243,24 +250,23 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BTNeliminarMiembroDelEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarMiembroDelEquipoActionPerformed
-        // TODO add your handling code here:
+       Miembro m = (Miembro) ListaMiembros.getSelectedValue();
+       Equipo e = (Equipo) ListaEquipos.getSelectedValue();
+       compD.borrarMiembro(e.getIdEquipo(), m.getIdMiembro());
+       
+       
     }//GEN-LAST:event_BTNeliminarMiembroDelEquipoActionPerformed
 
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
-        
-        
+      
         int filaSeleccionada = jTable1.rowAtPoint(evt.getPoint());
-        
-         
-        int idproy = Integer.parseInt((String) jTable1.getValueAt(filaSeleccionada, 0));
-        
-       listarEquiposProyecto( idproy);
-       
+        idproy = Integer.parseInt((String) jTable1.getValueAt(filaSeleccionada, 0));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void ListaEquiposValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaEquiposValueChanged
+        
+        modeloMiembros.removeAllElements();
         Equipo e = (Equipo) ListaEquipos.getSelectedValue();
         int idEquipo = e.getIdEquipo();
         
@@ -282,6 +288,16 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
         jPanel2.add(TF);
         
     }//GEN-LAST:event_BTNasignarNuevaTareaActionPerformed
+
+    private void BTNverEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNverEquiposActionPerformed
+        
+        
+         
+        
+        modeloEquipos.removeAllElements();
+        ListaEquipos.removeAll();
+       listarEquiposProyecto(idproy);
+    }//GEN-LAST:event_BTNverEquiposActionPerformed
 
     
     
@@ -308,7 +324,7 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
         
         for (Miembro m : MD.miembrosDeEquipo(idEquipo) ){
             
-            modeloMiembros.addElement(m.toString());
+            modeloMiembros.addElement(m);
             
         }
     }
@@ -319,8 +335,9 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
         for(Equipo e : ed.listarEquipoPorProyecto(idproy)){
             
             modeloEquipos.addElement(e);
-            
+           
         }
+         ListaEquipos.setModel(modeloEquipos);
     }
     
    
@@ -328,12 +345,12 @@ ViewModificarEquipo ME = new ViewModificarEquipo();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNasignarNuevaTarea;
     private javax.swing.JButton BTNeliminarMiembroDelEquipo;
+    private javax.swing.JButton BTNverEquipos;
     private javax.swing.JButton BTNverTareas;
     private javax.swing.JList ListaEquipos;
     private javax.swing.JList ListaMiembros;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

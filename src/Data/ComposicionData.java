@@ -102,10 +102,20 @@ public class ComposicionData {
         }
     }
     
-    public void borrarMiembro(){
-            String query = "DELETE FROM `composicion` WHERE idMiembro = ? ";
+    public void borrarMiembro(int idEquipo, int idMiembro){
+            String query = "DELETE FROM `composicion` WHERE idMiembro = ? AND idEquipo = ? ";
         try {            
             PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idMiembro);
+            ps.setInt(2, idEquipo);
+            
+            int e =ps.executeUpdate();
+            
+            if(e>=1){
+                JOptionPane.showMessageDialog(null, "MIEMBRO ELIMINADO DEL EQUIPO");
+            }else{
+                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+            }
             
         } catch (SQLException ex) {
                 Logger.getLogger(ComposicionData.class.getName()).log(Level.SEVERE, null, ex);
