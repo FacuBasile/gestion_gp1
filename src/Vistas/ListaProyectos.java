@@ -13,6 +13,7 @@ import Data.proyectoData;
 import Entidades.Equipo;
 import Entidades.Miembro;
 import Entidades.Proyecto;
+import java.awt.event.ActionEvent;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -31,6 +32,7 @@ DefaultListModel<String> modeloMiembros = new DefaultListModel();
 TareaData TD = new TareaData();
 ComentarioData CD = new ComentarioData();
 MiembroData MD = new MiembroData();
+ViewModificarEquipo ME = new ViewModificarEquipo();
 
 
     /**
@@ -48,7 +50,9 @@ MiembroData MD = new MiembroData();
         
         ListaMiembros.setModel(modeloMiembros);
         modeloMiembros.removeAllElements();
-        
+        jPanel1.setSize(1000, 700);
+        ME.setAlignmentX(500);
+         
         
     }
 
@@ -67,10 +71,11 @@ MiembroData MD = new MiembroData();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         ListaMiembros = new javax.swing.JList();
-        BTNasignarTarea = new javax.swing.JButton();
-        btnListarTareas = new javax.swing.JButton();
-        BTNasignarTarea1 = new javax.swing.JButton();
+        BTNeliminarMiembroDelEquipo = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        BTNverTareas = new javax.swing.JButton();
+        BTNasignarNuevaTarea = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -119,23 +124,34 @@ MiembroData MD = new MiembroData();
         });
         jScrollPane3.setViewportView(ListaMiembros);
 
-        BTNasignarTarea.setText("Asignar Tarea");
-
-        btnListarTareas.setText("Ver Tareas");
-        btnListarTareas.addActionListener(new java.awt.event.ActionListener() {
+        BTNeliminarMiembroDelEquipo.setText("Eliminar Miembro del Equipo");
+        BTNeliminarMiembroDelEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarTareasActionPerformed(evt);
-            }
-        });
-
-        BTNasignarTarea1.setText("Eliminar Miembro del Equipo");
-        BTNasignarTarea1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNasignarTarea1ActionPerformed(evt);
+                BTNeliminarMiembroDelEquipoActionPerformed(evt);
             }
         });
 
         jLabel2.setText("EQUIPOS:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 547, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 363, Short.MAX_VALUE)
+        );
+
+        BTNverTareas.setText("Ver Tareas");
+
+        BTNasignarNuevaTarea.setText("Asignar Nueva Tarea");
+        BTNasignarNuevaTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNasignarNuevaTareaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,35 +178,40 @@ MiembroData MD = new MiembroData();
                         .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BTNasignarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnListarTareas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BTNasignarTarea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 384, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(BTNeliminarMiembroDelEquipo)
+                        .addComponent(BTNverTareas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BTNasignarNuevaTarea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnListarTareas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BTNasignarTarea)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BTNasignarTarea1))
+                        .addComponent(BTNverTareas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BTNasignarNuevaTarea)
+                        .addGap(18, 18, 18)
+                        .addComponent(BTNeliminarMiembroDelEquipo))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
@@ -210,18 +231,21 @@ MiembroData MD = new MiembroData();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       dispose();
+        
+        jPanel2.removeAll();
+        jPanel2.repaint();
+        ME.setVisible(true);
+        
+        jPanel2.add(ME);
+        ME.setFocusable(true);
+       
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void BTNasignarTarea1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNasignarTarea1ActionPerformed
+    private void BTNeliminarMiembroDelEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNeliminarMiembroDelEquipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BTNasignarTarea1ActionPerformed
+    }//GEN-LAST:event_BTNeliminarMiembroDelEquipoActionPerformed
 
-
-    private void btnListarTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTareasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarTareasActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
@@ -249,6 +273,15 @@ MiembroData MD = new MiembroData();
 //        
 //        listarMiembrosEquipo(idEquipo);
     }//GEN-LAST:event_ListaEquiposMouseClicked
+
+    private void BTNasignarNuevaTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNasignarNuevaTareaActionPerformed
+        TareaForm TF = new TareaForm();
+        TF.setVisible(true);
+        jPanel2.removeAll();
+        jPanel2.repaint();
+        jPanel2.add(TF);
+        
+    }//GEN-LAST:event_BTNasignarNuevaTareaActionPerformed
 
     
     
@@ -293,16 +326,17 @@ MiembroData MD = new MiembroData();
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTNasignarTarea;
-    private javax.swing.JButton BTNasignarTarea1;
+    private javax.swing.JButton BTNasignarNuevaTarea;
+    private javax.swing.JButton BTNeliminarMiembroDelEquipo;
+    private javax.swing.JButton BTNverTareas;
     private javax.swing.JList ListaEquipos;
     private javax.swing.JList ListaMiembros;
-    private javax.swing.JButton btnListarTareas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

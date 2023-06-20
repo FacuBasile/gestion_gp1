@@ -46,6 +46,11 @@ public class TareaForm extends javax.swing.JInternalFrame {
         jLabel3.setText("FECHA CIERRE:");
 
         GuardarTarea.setText("Guardar Tarea");
+        GuardarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarTareaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("ACTIVA:");
 
@@ -107,6 +112,10 @@ public class TareaForm extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void GuardarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarTareaActionPerformed
+        String query = "";
+    }//GEN-LAST:event_GuardarTareaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

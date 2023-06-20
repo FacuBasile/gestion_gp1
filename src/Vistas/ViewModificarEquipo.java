@@ -5,6 +5,7 @@
  */
 package Vistas;
 
+import Data.proyectoData;
 import Entidades.Equipo;
 import Entidades.Proyecto;
 import java.sql.Date;
@@ -37,6 +38,7 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
     
     public void completarComboBoxEquipo() {
         jcbBuscar.addItem(null);
+        
         for (Equipo e : Gestion.ED.listaEquipo()) {
             jcbBuscar.addItem(e);
         }
@@ -194,6 +196,7 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
         Equipo equipo = new Equipo(idProyecto, nombre, nacimiento, jrbAlta.isSelected());
         
         Gestion.ED.modificarEquipo(equipo);
+        
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jcbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbBuscarActionPerformed
@@ -204,7 +207,8 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
             
             jtNombre.setText(equipo.getNombre());
             jdcFecha.setDate(Date.valueOf(equipo.getFechaCreacion()));
-            jcbBuscar.setSelectedIndex(1);
+            
+            jcbProyecto.setSelectedIndex(equipo.getIdProyecto());
             
             if (equipo.isEstado()) {
                 jrbAlta.setSelected(true);
@@ -214,7 +218,7 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
                 jrbBaja.setSelected(true);
             }
             
-            
+         
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Datos Incorrectos"+ex);
         }
