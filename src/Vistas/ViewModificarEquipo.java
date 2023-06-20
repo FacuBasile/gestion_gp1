@@ -75,6 +75,12 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
             }
         });
 
+        jcbProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbProyectoActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Fecha");
 
         jbActualizar.setText("ACTUALIZAR");
@@ -185,6 +191,7 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
         
         int idProyecto = jcbProyecto.getSelectedIndex();
         String nombre = jtNombre.getText();
+        int idEquipo = jcbBuscar.getSelectedIndex();
         
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
         String fecha = formatoFecha.format(jdcFecha.getDate());
@@ -194,17 +201,19 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
         Equipo equipo = new Equipo(idProyecto, nombre, nacimiento, jrbAlta.isSelected());
         
         Gestion.ED.modificarEquipo(equipo);
+        Gestion.ED.modificarProyecto(idEquipo, idProyecto);
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jcbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbBuscarActionPerformed
         // TODO add your handling code here:
         try {
-            Equipo equipo = new Equipo(); 
+            Equipo equipo = new Equipo();
             equipo = Gestion.ED.buscarEquipo(jcbBuscar.getSelectedIndex());
             
             jtNombre.setText(equipo.getNombre());
             jdcFecha.setDate(Date.valueOf(equipo.getFechaCreacion()));
-            jcbBuscar.setSelectedIndex(1);
+            jcbProyecto.setSelectedIndex(equipo.getIdProyecto());
+            //jcbProyecto.setSelectedItem(equipo.getIdProyecto());
             
             if (equipo.isEstado()) {
                 jrbAlta.setSelected(true);
@@ -213,7 +222,6 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
                 jrbAlta.setSelected(false);
                 jrbBaja.setSelected(true);
             }
-            
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Datos Incorrectos"+ex);
@@ -239,6 +247,11 @@ public class ViewModificarEquipo extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jcbProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbProyectoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jcbProyectoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
