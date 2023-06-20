@@ -218,11 +218,11 @@ MiembroData MD = new MiembroData();
         // TODO add your handling code here:
     }//GEN-LAST:event_BTNasignarTarea1ActionPerformed
 
-<<<<<<< HEAD
+
     private void btnListarTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTareasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarTareasActionPerformed
-=======
+
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
         
@@ -249,7 +249,7 @@ MiembroData MD = new MiembroData();
         
         listarMiembrosEquipo(idEquipo);
     }//GEN-LAST:event_ListaEquiposMouseClicked
->>>>>>> 8daa9d0c2503421767f938d964b05ad5efa394f7
+
     
     
     public void llenarTabla(){
