@@ -44,11 +44,7 @@ public class Gestion extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
@@ -111,12 +107,6 @@ public class Gestion extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem11);
 
-        jMenuItem12.setText("Asignar Proyecto");
-        jMenu2.add(jMenuItem12);
-
-        jMenuItem13.setText("Baja Proyecto");
-        jMenu2.add(jMenuItem13);
-
         jMenuItem14.setText("Modificar Equipo");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,12 +114,6 @@ public class Gestion extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem14);
-
-        jMenuItem15.setText(" Alta/Baja Equipo");
-        jMenu2.add(jMenuItem15);
-
-        jMenuItem2.setText("Ver Equipos");
-        jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
 
@@ -278,12 +262,8 @@ public class Gestion extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

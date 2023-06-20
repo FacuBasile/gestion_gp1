@@ -244,10 +244,10 @@ MiembroData MD = new MiembroData();
     }//GEN-LAST:event_ListaEquiposValueChanged
 
     private void ListaEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaEquiposMouseClicked
-       Equipo e = (Equipo) ListaEquipos.getSelectedValue();
-        int idEquipo = e.getIdEquipo();
-        
-        listarMiembrosEquipo(idEquipo);
+//       Equipo e = (Equipo) ListaEquipos.getSelectedValue();
+//        int idEquipo = e.getIdEquipo();
+//        
+//        listarMiembrosEquipo(idEquipo);
     }//GEN-LAST:event_ListaEquiposMouseClicked
 
     
@@ -276,7 +276,7 @@ MiembroData MD = new MiembroData();
         for (Miembro m : MD.miembrosDeEquipo(idEquipo) ){
             
             modeloMiembros.addElement(m.toString());
-            ListaMiembros.setModel(modeloEquipos);
+            
         }
     }
     
