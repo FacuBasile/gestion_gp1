@@ -29,6 +29,7 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     public ComposicionForm() {
         initComponents();
         listadoEquipo();
+        JListadoMiembros.setEnabled(false);
     }
 
     /**
@@ -186,11 +187,15 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     private void JConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JConfirmarActionPerformed
           int n = 1;
           SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+          System.out.println(formatoFecha);
           String fecha = formatoFecha.format(JFechaIncorporacion.getDate());
           LocalDate f_incorporacion = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-          Equipo e = (Equipo)JListadoEquipos.getSelectedItem();
-          Miembro m = (Miembro)JListadoMiembros.getSelectedItem();
+          if(f_incorporacion.isAfter(LocalDate.now())){
+              JOptionPane.showMessageDialog(this, "LA FECHA DEBE SER ANTERIOR A LA ACTUAL");
+          } else {
+              Equipo e = (Equipo)JListadoEquipos.getSelectedItem();
+              Miembro m = (Miembro)JListadoMiembros.getSelectedItem();
              
           for(Composicion com : CD.listarMiembrosEquipo()){
                int IdE = com.getIdEquipo();
@@ -214,6 +219,8 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
               CD.insertarMiembro(c);
               listadoMiembros();
           }
+          }                  
+          
     }//GEN-LAST:event_JConfirmarActionPerformed
 
     private void JSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JSalirActionPerformed
@@ -221,6 +228,7 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JSalirActionPerformed
 
     private void JListadoEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JListadoEquiposActionPerformed
+        JListadoMiembros.setEnabled(true);
         listadoMiembros();
     }//GEN-LAST:event_JListadoEquiposActionPerformed
 
@@ -240,13 +248,14 @@ public class ComposicionForm extends javax.swing.JInternalFrame {
     
     private void listadoMiembros(){
         JListadoMiembros.removeAllItems();
-        for(Miembro m :  MD.listarMiembrosSinEquipo()){
-             if(MD.listarMiembrosSinEquipo().isEmpty()){
+        if(MD.listarMiembrosSinEquipo().isEmpty()){
                 JOptionPane.showMessageDialog(this, "TODOS LOS MIEMBROS ASIGNADOS");
-             } else {
-             JListadoMiembros.addItem(m);
-             }
-        }
+                JListadoMiembros.setEnabled(false);
+           } else {
+                for(Miembro m :  MD.listarMiembrosSinEquipo()){        
+                    JListadoMiembros.addItem(m);            
+                }
+           }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

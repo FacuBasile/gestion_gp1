@@ -201,6 +201,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver Tareas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListarTareasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="VerEquiposBTN">
           <Properties>

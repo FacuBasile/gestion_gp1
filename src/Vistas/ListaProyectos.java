@@ -100,6 +100,11 @@ ComentarioData CD = new ComentarioData();
         BTNasignarTarea.setText("Asignar Tarea");
 
         btnListarTareas.setText("Ver Tareas");
+        btnListarTareas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarTareasActionPerformed(evt);
+            }
+        });
 
         VerEquiposBTN.setText("EQUIPOS:");
         VerEquiposBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +204,10 @@ ComentarioData CD = new ComentarioData();
     private void BTNasignarTarea1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNasignarTarea1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BTNasignarTarea1ActionPerformed
+
+    private void btnListarTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTareasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListarTareasActionPerformed
     
     
     public void llenarTabla(){

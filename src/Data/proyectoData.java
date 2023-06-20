@@ -152,14 +152,14 @@ public class proyectoData {
     return p;
 }    
     
-    public ArrayList<Equipo> equiposAsignadosAProyecto(int id){
-        ArrayList<Integer> equipos = new ArrayList();
-        String query= "SELECT * FROM EQUIPO WHERE idProyecto = ?";
-        
-        
-        
-        
-        
-        return equipos;
-    }
+//    public ArrayList<Equipo> equiposAsignadosAProyecto(int id){
+//        ArrayList<Integer> equipos = new ArrayList();
+//        String query= "SELECT * FROM EQUIPO WHERE idProyecto = ?";
+//        
+//        
+//        
+//        
+//        
+//        return equipos;
+//    }
 }
