@@ -38,7 +38,7 @@ MiembroData MD = new MiembroData();
 ViewModificarEquipo ME = new ViewModificarEquipo();
 DefaultListModel<Tarea> tareas = new DefaultListModel();
 int idproy, idMiembroEq;
-public static int idMiembrolista;
+public static int idMiembrolista, IdTarea;
 
     /**
      * Creates new form ListaProyectos
@@ -162,6 +162,11 @@ public static int idMiembrolista;
         );
 
         BTNverTareas.setText("Ver Tarea");
+        BTNverTareas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNverTareasActionPerformed(evt);
+            }
+        });
 
         BTNasignarNuevaTarea.setText("Asignar Nueva Tarea");
         BTNasignarNuevaTarea.addActionListener(new java.awt.event.ActionListener() {
@@ -263,7 +268,7 @@ public static int idMiembrolista;
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BTNeliminarMiembroDelEquipo)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,15 +307,13 @@ public static int idMiembrolista;
 
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-      
         int filaSeleccionada = jTable1.rowAtPoint(evt.getPoint());
         idproy = Integer.parseInt((String) jTable1.getValueAt(filaSeleccionada, 0));
-        
-        modeloEquipos.removeAllElements();
+        listarEquiposProyecto(idproy);      
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void ListaEquiposValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaEquiposValueChanged
-        
+        ListaEquipos.removeAll();
         modeloMiembros.removeAllElements();
         Equipo e = (Equipo) ListaEquipos.getSelectedValue();
         int idEquipo = e.getIdEquipo();
@@ -319,6 +322,7 @@ public static int idMiembrolista;
     }//GEN-LAST:event_ListaEquiposValueChanged
 
     private void ListaEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaEquiposMouseClicked
+        
         modeloMiembros.removeAllElements();
         Equipo e = (Equipo) ListaEquipos.getSelectedValue();
         int idEquipo = e.getIdEquipo();
@@ -350,8 +354,20 @@ public static int idMiembrolista;
     }//GEN-LAST:event_ListaMiembrosValueChanged
 
     private void ListaTareasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaTareasValueChanged
-        BTNverTareas.setEnabled(true);
+        Tarea t = new Tarea();
+        BTNverTareas.setEnabled(true);   
+        t = (Tarea)ListaTareas.getSelectedValue();
+        IdTarea = t.getIdTarea();      
     }//GEN-LAST:event_ListaTareasValueChanged
+
+    private void BTNverTareasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNverTareasActionPerformed
+        ComentarioForm CF = new ComentarioForm();
+        CF.setVisible(true);
+        jPanel2.removeAll();
+        jPanel2.repaint();
+        jPanel2.add(CF);  
+        CF.moveToFront();
+    }//GEN-LAST:event_BTNverTareasActionPerformed
 
     
     

@@ -12,7 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -245,5 +247,37 @@ public class TareaData {
         
         
         return tareas;
+    }
+    
+    public Tarea buscarTarea(int IdTarea){
+        Tarea t = null;
+        String query = "SELECT * FROM `tarea` WHERE idTarea = ?";
+        
+        try{                       
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, IdTarea);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                t.setNombre(rs.getString("nombre"));
+                
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+                String fecha = formatoFecha.format(rs.getDate("fechaCreacion"));
+                LocalDate fechaCreacion = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));     
+                t.setFechaCreacion(fechaCreacion);
+                
+                SimpleDateFormat formatoFecha2 = new SimpleDateFormat("dd-MM-yyyy");
+                String fecha2 = formatoFecha2.format(rs.getDate("fechaCierre"));
+                LocalDate fechaCierre = LocalDate.parse(fecha2, DateTimeFormatter.ofPattern("dd-MM-yyyy"));     
+                t.setFechaCierre(fechaCierre);
+                
+                t.setEstado(rs.getBoolean("estado"));
+                t.setIdMiembroEq(rs.getInt("idMiembroEq"));                               
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR" + ex);
+        }
+        
+        return t; 
     }
 }
