@@ -9,8 +9,11 @@ import Data.ComentarioData;
 import Data.TareaData;
 import Entidades.Comentario;
 import Entidades.Tarea;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Date;
+
 import jdk.nashorn.internal.objects.NativeDate;
 
 /**
@@ -18,6 +21,8 @@ import jdk.nashorn.internal.objects.NativeDate;
  * @author Usuario
  */
 public class ComentarioForm extends javax.swing.JInternalFrame {
+int idTarea =ListaProyectos.IdTarea;
+
 
     public static ComentarioData cd = new ComentarioData();
     TareaData TD = new TareaData();
@@ -28,14 +33,7 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
     
     public ComentarioForm() {
         initComponents();
-        tar = (Tarea)TD.buscarTarea(ListaProyectos.IdTarea);
-        com = (Comentario)CD.buscarComentario(ListaProyectos.IdTarea);
-        
-        JNombreTarea.setText(tar.getNombre());
-        JEstadoTarea.setSelected(tar.isEstado());
-        JFechaCierre.setDateFormatString(tar.getFechaCierre().toString());
-        JComentario.setText(com.getComentario());
-        JFechaAvance.setDateFormatString(com.getFechaAvance().toString());
+        completarDatos();
     }
 
     /**
@@ -114,8 +112,6 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("FECHA DE CIERRE --->");
-
-        jLabel6.setText("jLabel6");
 
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -223,16 +219,27 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String comentario = JComentario.getText();
+        tar.setNombre(JNombreTarea.getText());
+        com.setComentario(JComentario.getText());
+        tar.setEstado(JEstadoTarea.isSelected());
         
-        java.util.Date f1 = JFechaAvance.getDate();
-        long tiempo = f1.getTime(); 
-        java.sql.Date fecha = new java.sql.Date(tiempo);
+        //PARSE A LOCALDATE PARA FECHA CIERRE
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+        String fecha = formatoFecha.format(JFechaCierre.getDate());
+        LocalDate fechaCierre = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        tar.setFechaCierre(fechaCierre);
         
-        LocalDate fechaAvance = fecha.toLocalDate();
-//        int IdTarea = Integer.valueOf(JIDTarea.getText());
-//        Comentario c = new Comentario(comentario, fechaAvance, IdTarea);
-//        cd.generarComentario(c);
+        //PARSE A LOCALDATE PARA FECHA AVANCE
+         SimpleDateFormat formatoF = new SimpleDateFormat("dd-MM-yyyy");
+        String fechaAvance = formatoF.format(JFechaAvance.getDate());
+        LocalDate fechaAv = LocalDate.parse(fechaAvance, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        com.setFechaAvance(fechaAv);
+        
+        TD.ActualizarTarea(tar, idTarea);
+        CD.editarComentario(com, idTarea);
+        
+        jButton2.doClick();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -243,6 +250,19 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
         int id;
     }//GEN-LAST:event_JFechaAvanceMouseClicked
 
+    
+    public void completarDatos(){
+        
+        tar = (Tarea)TD.buscarTarea(idTarea);
+        com = (Comentario)CD.buscarComentario(idTarea);
+        
+        JNombreTarea.setText(tar.getNombre());
+        JEstadoTarea.setSelected(tar.isEstado());
+        JComentario.setText(com.getComentario());
+        
+        JFechaCierre.setDate(Date.valueOf(tar.getFechaCierre()));
+        JFechaAvance.setDate(Date.valueOf(com.getFechaAvance()));
+    }
     private void JEstadoTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JEstadoTareaActionPerformed
         if(JEstadoTarea.isSelected()){
             jLabel6.setText("ACTIVO");

@@ -53,7 +53,7 @@ public class ComentarioData {
     }
     
     public Comentario buscarComentario(int IdTarea){
-        Comentario comentario = null;
+        Comentario comentario = new Comentario();
         String query = "SELECT * FROM `comentario` WHERE idTarea = ?";
         
         try {                           
@@ -62,7 +62,7 @@ public class ComentarioData {
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
-                comentario = new Comentario();
+                
                 comentario.setIdComentario(rs.getInt("idComentario"));
                 comentario.setComentario(rs.getString("comentario"));
                 SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
@@ -78,14 +78,14 @@ public class ComentarioData {
         return comentario;  
     }
     
-    public void editarComentario(Comentario c){
+    public void editarComentario(Comentario c, int idTarea){
         String query ="UPDATE comentario SET comentario = ?, fechaAvance = ? WHERE idTarea = ? ";
         
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, c.getComentario());
             ps.setDate(2, Date.valueOf(c.getFechaAvance()));
-            ps.setInt(3, c.getIdTarea());
+            ps.setInt(3, idTarea);
             
             ps.executeUpdate();
             

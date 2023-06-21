@@ -61,7 +61,7 @@ public class TareaData {
     }
     
     
-     public void ActualizarTarea(Tarea t){
+     public void ActualizarTarea(Tarea t, int idTarea){
         String query ="UPDATE tarea SET nombre = ?, fechaCreacion= ?, fechaCierre = ?, estado = ? WHERE idTarea = ?";
         
         try {
@@ -71,7 +71,7 @@ public class TareaData {
             ps.setDate(2, Date.valueOf(t.getFechaCreacion()));
             ps.setDate(3, Date.valueOf(t.getFechaCierre()));
             ps.setBoolean(4, t.isEstado());
-            ps.setInt(5, t.getIdTarea());
+            ps.setInt(5, idTarea);
             
             ResultSet rs = ps.executeQuery();
             
@@ -250,15 +250,16 @@ public class TareaData {
     }
     
     public Tarea buscarTarea(int IdTarea){
-        Tarea t = null;
-        String query = "SELECT * FROM `tarea` WHERE idTarea = ?";
         
+        String query = "SELECT * FROM `tarea` WHERE idTarea = ?";
+        Tarea t = new Tarea();
         try{                       
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, IdTarea);
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
+                
                 t.setNombre(rs.getString("nombre"));
                 
                 SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");

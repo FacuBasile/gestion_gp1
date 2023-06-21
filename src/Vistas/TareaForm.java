@@ -52,6 +52,9 @@ ComentarioData CD = new ComentarioData();
         jLabel6 = new javax.swing.JLabel();
         JFechaAvance = new com.toedter.calendar.JDateChooser();
 
+        setBackground(new java.awt.Color(0, 255, 204));
+        setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 255)));
+
         jLabel1.setText("NUEVA TAREA");
 
         NombreTarea.setText("NOMBRE TAREA");
