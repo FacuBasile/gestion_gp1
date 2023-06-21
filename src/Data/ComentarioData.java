@@ -67,7 +67,7 @@ public class ComentarioData {
                 comentario.setComentario(rs.getString("comentario"));
                 SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
                 String fecha = formatoFecha.format(rs.getDate("fechaAvance"));
-                LocalDate fechaNueva = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                LocalDate fechaNueva = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));       
                 comentario.setFechaAvance(fechaNueva);
                 comentario.setIdTarea(IdTarea);
             }
