@@ -5,7 +5,9 @@
  */
 package Vistas;
 
+import Data.ComentarioData;
 import Data.TareaData;
+import Entidades.Comentario;
 import Entidades.Tarea;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -18,6 +20,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class TareaForm extends javax.swing.JInternalFrame {
 TareaData TD = new TareaData();
+ComentarioData CD = new ComentarioData();
     /**
      * Creates new form TareaForm
      */
@@ -153,6 +156,7 @@ TareaData TD = new TareaData();
 
     private void GuardarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarTareaActionPerformed
        Tarea t = new Tarea();
+       Comentario c = new Comentario();
        
        t.setNombre(NombreTarea.getText());
        t.setEstado(BTNactiva.isSelected());
@@ -170,8 +174,26 @@ TareaData TD = new TareaData();
        LocalDate fechaC = LocalDate.parse(fecha,DateTimeFormatter.ofPattern("dd-MM-yyyy"));
        t.setFechaCierre(fechaC);
        
-       
        TD.nuevaTarea(t, idm);
+       
+       // SE CREA COMENTARIO 
+       
+       String fechaAvance = date.format(JFechaAvance.getDate());
+       LocalDate Favance = LocalDate.parse(fechaAvance,DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+       c.setComentario(jTextArea1.getText());
+       c.setFechaAvance(Favance);
+       
+       //para el idTarea en comentario, se busca la tarea RECIEN CREADA por el NOMBRE y busco el id
+       
+       int idTareaParaComentario=0;
+       for(Tarea tarea : TD.TareasDeMiembroEq(idm)){
+           if(tarea.getNombre().equals(NombreTarea.getText())){
+               idTareaParaComentario = tarea.getIdTarea();
+           }
+       }
+       c.setIdTarea(idTareaParaComentario);
+       
+       CD.generarComentario(c);
     }//GEN-LAST:event_GuardarTareaActionPerformed
 
 
