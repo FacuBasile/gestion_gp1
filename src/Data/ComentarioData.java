@@ -12,7 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -48,5 +50,31 @@ public class ComentarioData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "ERROR AL GENERAR COMENTARIO" + ex);
         }
+    }
+    
+    public Comentario buscarComentario(int IdTarea){
+        Comentario comentario = null;
+        String query = "SELECT * FROM `comentario` WHERE idTarea = ?";
+        
+        try {                           
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, IdTarea);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                comentario = new Comentario();
+                comentario.setIdComentario(rs.getInt("idComentario"));
+                comentario.setComentario(rs.getString("comentario"));
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+                String fecha = formatoFecha.format(rs.getDate("fechaAvance"));
+                LocalDate fechaNueva = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                comentario.setFechaAvance(fechaNueva);
+                comentario.setIdTarea(IdTarea);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR" + ex);
+        }
+        
+        return comentario;  
     }
 }
