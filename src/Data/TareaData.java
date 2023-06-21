@@ -59,8 +59,8 @@ public class TareaData {
     }
     
     
-     public void ActualizarTarea(Tarea t, int idMiembroEq){
-        String query ="UPDATE tarea SET nombre = ?, fechaCreacion= ?, fechaCierre = ?, estado = ? WHERE idMiembroEq = ?";
+     public void ActualizarTarea(Tarea t){
+        String query ="UPDATE tarea SET nombre = ?, fechaCreacion= ?, fechaCierre = ?, estado = ? WHERE idTarea = ?";
         
         try {
             
@@ -69,12 +69,12 @@ public class TareaData {
             ps.setDate(2, Date.valueOf(t.getFechaCreacion()));
             ps.setDate(3, Date.valueOf(t.getFechaCierre()));
             ps.setBoolean(4, t.isEstado());
-            ps.setInt(5, idMiembroEq);
+            ps.setInt(5, t.getIdTarea());
             
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "TAREA GUARDADA");
+                JOptionPane.showMessageDialog(null, "TAREA EDITADA");
             }
             ps.close();
             

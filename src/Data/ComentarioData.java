@@ -77,4 +77,23 @@ public class ComentarioData {
         
         return comentario;  
     }
+    
+    public void editarComentario(Comentario c){
+        String query ="UPDATE comentario SET comentario = ?, fechaAvance = ? WHERE idTarea = ? ";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, c.getComentario());
+            ps.setDate(2, Date.valueOf(c.getFechaAvance()));
+            ps.setInt(3, c.getIdTarea());
+            
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "COMENTARIO EDITADO");
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ComentarioData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
