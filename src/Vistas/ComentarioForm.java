@@ -8,6 +8,7 @@ package Vistas;
 import Data.ComentarioData;
 import Data.TareaData;
 import Entidades.Comentario;
+import Entidades.Tarea;
 import java.time.LocalDate;
 import java.util.Date;
 import jdk.nashorn.internal.objects.NativeDate;
@@ -22,9 +23,19 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
     TareaData TD = new TareaData();
     ComentarioData CD = new ComentarioData();
     
+    Tarea tar = new Tarea();
+    Comentario com = new Comentario();
+    
     public ComentarioForm() {
         initComponents();
-        TD.BuscarTarea(ListaProyectos.IdTarea);
+        tar = (Tarea)TD.buscarTarea(ListaProyectos.IdTarea);
+        com = (Comentario)CD.buscarComentario(ListaProyectos.IdTarea);
+        
+        JNombreTarea.setText(tar.getNombre());
+        JEstadoTarea.setSelected(tar.isEstado());
+        JFechaCierre.setDateFormatString(tar.getFechaCierre().toString());
+        JComentario.setText(com.getComentario());
+        JFechaAvance.setDateFormatString(com.getFechaAvance().toString());
     }
 
     /**
@@ -46,10 +57,10 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
         JFechaAvance = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        JNombreTarea = new javax.swing.JTextField();
         JEstadoTarea = new javax.swing.JToggleButton();
         jLabel5 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        JFechaCierre = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
 
         jDesktopPane1.setBackground(new java.awt.Color(7, 146, 83));
@@ -114,10 +125,10 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(JFechaAvance, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(JNombreTarea, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(JEstadoTarea, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(JFechaCierre, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -151,9 +162,9 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
                                             .addComponent(JEstadoTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(jLabel6))
-                                        .addComponent(jTextField1)
+                                        .addComponent(JNombreTarea)
                                         .addComponent(jScrollPane1)
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(JFechaCierre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                     .addGap(103, 103, 103)
                                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))))
@@ -165,7 +176,7 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JNombreTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -173,7 +184,7 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
                             .addComponent(JEstadoTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JFechaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel4)
@@ -245,9 +256,10 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea JComentario;
     private javax.swing.JToggleButton JEstadoTarea;
     private com.toedter.calendar.JDateChooser JFechaAvance;
+    private com.toedter.calendar.JDateChooser JFechaCierre;
+    private javax.swing.JTextField JNombreTarea;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -256,6 +268,5 @@ public class ComentarioForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
