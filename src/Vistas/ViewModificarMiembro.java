@@ -191,9 +191,6 @@ public class ViewModificarMiembro extends javax.swing.JInternalFrame {
             Miembro miembro = new Miembro(id,dni,apellido,nombre,jrbAlta.isSelected());
             
             Gestion.MD.actualizarMiembro(miembro);
-            //Verificar como actualizar la lista luego de modificar algun miembro
-            //completarComboBox();
-            
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Datos Incorrectos"+ex);
