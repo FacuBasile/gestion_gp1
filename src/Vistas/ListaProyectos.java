@@ -14,6 +14,7 @@ import Data.proyectoData;
 import Entidades.Equipo;
 import Entidades.Miembro;
 import Entidades.Proyecto;
+import Entidades.Tarea;
 import java.awt.event.ActionEvent;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -35,7 +36,9 @@ ComentarioData CD = new ComentarioData();
 ComposicionData compD = new ComposicionData();
 MiembroData MD = new MiembroData();
 ViewModificarEquipo ME = new ViewModificarEquipo();
-int idproy;
+DefaultListModel<Tarea> tareas = new DefaultListModel();
+int idproy, idMiembroEq;
+public static int idMiembrolista;
 
     /**
      * Creates new form ListaProyectos
@@ -47,15 +50,21 @@ int idproy;
         
         initComponents();
         llenarTabla();
+        
         ListaEquipos.setModel(modeloEquipos);
         modeloEquipos.removeAllElements();
         
         ListaMiembros.setModel(modeloMiembros);
         modeloMiembros.removeAllElements();
+        
         jPanel1.setSize(1000, 700);
         ME.setAlignmentX(500);
-         
         
+        
+        ListaTareas.setModel(tareas);
+        tareas.removeAllElements();
+        
+        BTNverTareas.setEnabled(false);
     }
 
     
@@ -79,7 +88,7 @@ int idproy;
         BTNasignarNuevaTarea = new javax.swing.JButton();
         BTNverEquipos = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        ListaTareas = new javax.swing.JList<>();
+        ListaTareas = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -127,6 +136,11 @@ int idproy;
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        ListaMiembros.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListaMiembrosValueChanged(evt);
+            }
+        });
         jScrollPane3.setViewportView(ListaMiembros);
 
         BTNeliminarMiembroDelEquipo.setText("Eliminar Miembro del Equipo");
@@ -163,10 +177,15 @@ int idproy;
             }
         });
 
-        ListaTareas.setModel(new javax.swing.AbstractListModel<String>() {
+        ListaTareas.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        ListaTareas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListaTareasValueChanged(evt);
+            }
         });
         jScrollPane4.setViewportView(ListaTareas);
 
@@ -286,6 +305,8 @@ int idproy;
       
         int filaSeleccionada = jTable1.rowAtPoint(evt.getPoint());
         idproy = Integer.parseInt((String) jTable1.getValueAt(filaSeleccionada, 0));
+        
+        modeloEquipos.removeAllElements();
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void ListaEquiposValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaEquiposValueChanged
@@ -298,10 +319,11 @@ int idproy;
     }//GEN-LAST:event_ListaEquiposValueChanged
 
     private void ListaEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaEquiposMouseClicked
-//       Equipo e = (Equipo) ListaEquipos.getSelectedValue();
-//        int idEquipo = e.getIdEquipo();
-//        
-//        listarMiembrosEquipo(idEquipo);
+        modeloMiembros.removeAllElements();
+        Equipo e = (Equipo) ListaEquipos.getSelectedValue();
+        int idEquipo = e.getIdEquipo();
+        
+        listarMiembrosEquipo(idEquipo);
     }//GEN-LAST:event_ListaEquiposMouseClicked
 
     private void BTNasignarNuevaTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNasignarNuevaTareaActionPerformed
@@ -315,13 +337,21 @@ int idproy;
 
     private void BTNverEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNverEquiposActionPerformed
         
-        
-         
-        
         modeloEquipos.removeAllElements();
-        ListaEquipos.removeAll();
+        
        listarEquiposProyecto(idproy);
     }//GEN-LAST:event_BTNverEquiposActionPerformed
+
+    private void ListaMiembrosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaMiembrosValueChanged
+        Miembro ml = (Miembro) ListaMiembros.getSelectedValue();
+        idMiembroEq = ml.getIdMiembro();
+        idMiembrolista = ml.getIdMiembro();
+        listarTareasMiembro();
+    }//GEN-LAST:event_ListaMiembrosValueChanged
+
+    private void ListaTareasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaTareasValueChanged
+        BTNverTareas.setEnabled(true);
+    }//GEN-LAST:event_ListaTareasValueChanged
 
     
     
@@ -351,6 +381,7 @@ int idproy;
             modeloMiembros.addElement(m);
             
         }
+        ListaMiembros.setModel(modeloMiembros);
     }
     
     
@@ -364,7 +395,14 @@ int idproy;
          ListaEquipos.setModel(modeloEquipos);
     }
     
-   
+    public void listarTareasMiembro(){
+        tareas.removeAllElements();
+        for(Tarea t : TD.TareasDeMiembroEq(idMiembroEq)){
+            tareas.addElement(t);
+        }
+        
+        ListaTareas.setModel(tareas);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNasignarNuevaTarea;
@@ -373,7 +411,7 @@ int idproy;
     private javax.swing.JButton BTNverTareas;
     private javax.swing.JList ListaEquipos;
     private javax.swing.JList ListaMiembros;
-    private javax.swing.JList<String> ListaTareas;
+    private javax.swing.JList ListaTareas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

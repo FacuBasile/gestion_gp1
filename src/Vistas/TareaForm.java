@@ -5,12 +5,19 @@
  */
 package Vistas;
 
+import Data.TareaData;
+import Entidades.Tarea;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author H
  */
 public class TareaForm extends javax.swing.JInternalFrame {
-
+TareaData TD = new TareaData();
     /**
      * Creates new form TareaForm
      */
@@ -132,7 +139,26 @@ public class TareaForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarTareaActionPerformed
-        String query = "";
+       Tarea t = new Tarea();
+       
+       t.setNombre(NombreTarea.getText());
+       t.setEstado(BTNactiva.isSelected());
+       int idm = ListaProyectos.idMiembrolista;
+       t.setIdMiembroEq(idm);
+       //DAR FORMATO A FECHA CREACION PARA PARSEAR A DATE
+       SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
+       String fecha = date.format(FechaCreacion.getDate());
+        LocalDate fechaCreacion = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+       t.setFechaCreacion(fechaCreacion);
+       
+       //DAR FORMATO A FECHA CIERRE PARA PARSEAR A DATE
+       
+       String fechaCierre = date.format(jDateChooser2.getDate());
+       LocalDate fechaC = LocalDate.parse(fecha,DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+       t.setFechaCierre(fechaC);
+       
+       
+       TD.nuevaTarea(t, idm);
     }//GEN-LAST:event_GuardarTareaActionPerformed
 
 

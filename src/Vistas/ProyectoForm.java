@@ -124,9 +124,11 @@ proyectoData pd = new proyectoData();
         Proyecto p = new Proyecto();
         p.setNombre(NombreProyecto.getText());
         p.setDescripcion(Descripcion.getText());
+        
         SimpleDateFormat date = new SimpleDateFormat("dd-MM-yyyy");
         String fecha = date.format(jDateChooser1.getDate());
         LocalDate fechaInicio = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        
         if(fechaInicio.isBefore(LocalDate.now())){
             JOptionPane.showMessageDialog(this, "LA FECHA TIENE QUE SER POSTERIOR A LA ACTUAL");
         }else{

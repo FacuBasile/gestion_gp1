@@ -84,11 +84,14 @@ public class Tarea {
         this.idMiembroEq = idMiembroEq;
     }
 
-    public void setFechaCreacion(LocalDate toLocalDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setFechaCreacion(LocalDate fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
-   
+   @Override
+   public String toString(){
+       return "ID Tarea: "+ idTarea + " Nombre: "+ nombre; 
+   } 
     
     
 }

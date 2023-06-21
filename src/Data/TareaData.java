@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -34,12 +35,41 @@ public class TareaData {
         
         try {
             
-            PreparedStatement ps = con.prepareStatement(query);
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, t.getNombre());
             ps.setDate(2, Date.valueOf(t.getFechaCreacion()));
             ps.setDate(3, Date.valueOf(t.getFechaCierre()));
             ps.setBoolean(4, t.isEstado());
             ps.setInt(5, t.getIdMiembroEq());
+            
+            ps.executeQuery();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "TAREA GUARDADA");
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TareaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
+    
+    
+     public void ActualizarTarea(Tarea t, int idMiembroEq){
+        String query ="UPDATE tarea SET nombre = ?, fechaCreacion= ?, fechaCierre = ?, estado = ? WHERE idMiembroEq = ?";
+        
+        try {
+            
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, t.getNombre());
+            ps.setDate(2, Date.valueOf(t.getFechaCreacion()));
+            ps.setDate(3, Date.valueOf(t.getFechaCierre()));
+            ps.setBoolean(4, t.isEstado());
+            ps.setInt(5, idMiembroEq);
             
             ResultSet rs = ps.executeQuery();
             
@@ -54,7 +84,7 @@ public class TareaData {
         
         
     }
-    
+     
     public void actualizarFechaCierre(Tarea t, LocalDate f){
        String query = "UPDATE tarea SET fechaCierre = ? WHERE idTarea = ?"; 
        
@@ -122,7 +152,7 @@ public class TareaData {
                 Tarea t = new Tarea();
                 t.setNombre(rs.getString("nombre"));
                 t.setIdTarea(rs.getInt("idTarea"));
-                t.setIdMiembroEq(rs.getInt("idMiembreoEq"));
+                t.setIdMiembroEq(rs.getInt("idMiembroEq"));
                 t.setEstado(rs.getBoolean("estado"));
                 t.setFechaCierre(rs.getDate("fechaCierre").toLocalDate());
                 t.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
